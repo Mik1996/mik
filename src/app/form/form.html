@@ -1,0 +1,65 @@
+<form (submit)="submitHandler($event)">
+  <!-- FIRST NAME -->
+  <div class="form-field-wrapper">
+    <label for="firstName">{{ 'FIRST_NAME' | translate }}</label>
+    <input
+      class="form-field"
+      id="firstName"
+      type="text"
+      [placeholder]="'FIRST_NAME_PLACEHOLDER' | translate"
+      [field]="form.firstName"
+    />
+    @for(error of form.firstName().errors(); track $index) {
+    <ul>
+      <li>{{ error.message | translate }}</li>
+    </ul>
+    }
+  </div>
+
+  <!-- LAST NAME -->
+  <div class="form-field-wrapper">
+    <label for="lastName">{{ 'LAST_NAME' | translate }}</label>
+    <input
+      class="form-field"
+      id="lastName"
+      type="text"
+      [placeholder]="'LAST_NAME_PLACEHOLDER' | translate"
+      [field]="form.lastName"
+    />
+    @for(error of form.lastName().errors(); track $index) {
+    <ul>
+      <li>{{ error.message | translate }}</li>
+    </ul>
+    }
+  </div>
+
+  <!-- EMAIL -->
+  <div class="form-field-wrapper">
+    <label for="email">{{ 'EMAIL' | translate }}</label>
+    <input
+      class="form-field"
+      id="email"
+      type="email"
+      [placeholder]="'EMAIL_PLACEHOLDER' | translate"
+      [field]="form.email"
+    />
+    @for(error of form.email().errors(); track $index) {
+    <ul>
+      <li>{{ error.message | translate }}</li>
+    </ul>
+    }
+  </div>
+
+  <!-- NOTIFY BY EMAIL -->
+  <div class="form-field-wrapper">
+    <label for="notifyByEmail">{{ 'NOTIFY_BY_EMAIL' | translate }}</label>
+    <input
+      class="form-field"
+      id="notifyByEmail"
+      type="checkbox"
+      [field]="form.notifyByEmail"
+    />
+  </div>
+
+  <button type="submit" [disabled]="form().submitting() || form().invalid()">{{ 'SUBMIT' | translate }}</button>
+</form>

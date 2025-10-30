@@ -1,0 +1,13 @@
+{
+  "FIRST_NAME": "Nome",
+  "FIRST_NAME_PLACEHOLDER": "Inserisci il tuo nome",
+  "LAST_NAME": "Cognome",
+  "LAST_NAME_PLACEHOLDER": "Inserisci il tuo cognome",
+  "EMAIL": "Email",
+  "EMAIL_PLACEHOLDER": "Inserisci la tua email",
+  "NOTIFY_BY_EMAIL": "Notifica tramite email",
+  "SUBMIT": "Conferma",
+  "REQUIRED_FIELD": "Il campo è obbligatorio!",
+  "MINLENGHT_3_FIELD": "Questo campo deve avere almeno 3 caratteri!",
+  "EMAIL_FIELD": "Inserire email valida!"
+}

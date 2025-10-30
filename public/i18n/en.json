@@ -1,0 +1,13 @@
+{
+  "FIRST_NAME": "First name",
+  "FIRST_NAME_PLACEHOLDER": "Enter your first name",
+  "LAST_NAME": "Last name",
+  "LAST_NAME_PLACEHOLDER": "Enter your last name",
+  "EMAIL": "Email",
+  "EMAIL_PLACEHOLDER": "Enter your email",
+  "NOTIFY_BY_EMAIL": "Notify by email",
+  "SUBMIT": "Submit",
+  "REQUIRED_FIELD": "This field is required!",
+  "MINLENGHT_3_FIELD": "This field must have at least 3 character!",
+  "EMAIL_FIELD": "Insert a valid email!"
+}

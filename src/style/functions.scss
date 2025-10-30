@@ -1,0 +1,87 @@
+@use "sass:list";
+@use "sass:map";
+@use "variables.scss" as vars;
+
+@function prop-var-name($name) {
+  @return --#{vars.$app-prefix}-#{$name};
+}
+
+@function prop-var($name, $fallback: null) {
+  @return if($fallback, var(prop-var-name($name), #{$fallback}), var(prop-var-name($name)));
+}
+
+@function units($amount: 1) {
+  @return if($amount == 1, #{prop-var(base-unit, vars.$base-unit)}, calc(#{prop-var(base-unit, vars.$base-unit)} * #{$amount}));
+}
+
+@function color($section, $name: base) {
+  @return map.get(map.get(vars.$colors, $section), $name);
+}
+
+@function color-var-name($section, $name: base) {
+  @return prop-var-name(#{$section}-#{$name}-color);
+}
+
+@function color-var($section, $name: base) {
+  @return var(#{color-var-name($section, $name)}, #{color($section, $name)});
+}
+
+@function spacing($size: m) {
+  @return map.get(vars.$spacing, $size);
+}
+
+@function spacing-var-name($size: m) {
+  @return prop-var-name(spacing-#{$size});
+}
+
+@function spacing-var($size: m) {
+  @return var(spacing-var-name($size), spacing($size));
+}
+
+@function radius($size: b) {
+  @return map.get(vars.$radii, $size);
+}
+
+@function radius-var-name($size: b) {
+  @return prop-var-name(radius-#{$size});
+}
+
+@function radius-var($size: b) {
+  @return var(radius-var-name($size), radius($size));
+}
+
+@function font-size($name) {
+  @return map.get(vars.$font-sizes, $name);
+}
+
+@function font-size-var-name($name) {
+  @return prop-var-name(font-size-#{$name});
+}
+
+@function font-size-var($name) {
+  @return var(font-size-var-name($name), font-size($name));
+}
+
+@function elevation($level) {
+  @return list.nth(vars.$elevations, $level);
+}
+
+@function elevation-var-name($level) {
+  @return prop-var-name(elevation-#{$level});
+}
+
+@function elevation-var($level) {
+  @return var(elevation-var-name($level), elevation($level));
+}
+
+@function duration($speed: normal) {
+  @return map.get(vars.$durations, $speed);
+}
+
+@function duration-var-name($speed: normal) {
+  @return prop-var-name(duration-#{$speed});
+}
+
+@function duration-var($speed: normal) {
+  @return var(duration-var-name($speed), duration($speed));
+}

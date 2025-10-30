@@ -1,1 +1,109 @@
-/* You can add global styles to this file, and also import other style files */
+@use "sass:list";
+@use "sass:math";
+@use "variables.scss" as vars;
+@use "theme-colors.scss" as themeColors;
+@use "functions.scss" as fn;
+@use "spacings.scss" as spacings;
+@use "status-colors.scss" as statusColors;
+
+$scrollbar-thickness: fn.spacing(xsp);
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+:root {
+  --black: #000000;
+  --blu: #0073ff;
+  --cyan: #30d5c8;
+  --danger: #cf2845;
+  --danger-dark: #af0800;
+  --dark-green: #90d600;
+  --grey0: #646464;
+  --grey1: #777777;
+  --light-green: #b8e5af;
+  --light-grey: #ced4da;
+  --lilla: #db0d71;
+  --orange: #f56e00;
+  --primary: #3bc75d;
+  --primary-25: #3bc75d1a;
+  --purple: #770c8a;
+  --red-100: #d52c20;
+  --success: #28cf64;
+  --success-25: #28cf641a;
+  --white: #ffffff;
+  --yellow: #ffca01;
+
+  @each $section, $bundle in vars.$colors {
+    @each $name, $color in $bundle {
+      #{fn.color-var-name($section, $name)}: $color;
+    }
+  }
+
+  @each $size, $value in vars.$spacing {
+    #{fn.spacing-var-name($size)}: $value;
+  }
+
+  @each $radius, $value in vars.$radii {
+    #{fn.radius-var-name($radius)}: $value;
+  }
+
+  @each $size, $value in vars.$font-sizes {
+    #{fn.font-size-var-name($size)}: $value;
+  }
+
+  #{fn.prop-var-name(elevation-color)}: vars.$elevation-color;
+
+  @for $level from 1 through list.length(vars.$elevations) {
+    #{fn.elevation-var-name($level)}: fn.elevation($level);
+  }
+
+  @each $speed, $value in vars.$durations {
+    #{fn.duration-var-name($speed)}: $value;
+  }
+
+  color: fn.color-var(grayscale, 60);
+  font-family:
+    GT-America,
+    IBM Plex Sans,
+    system-ui,
+    sans-serif;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: "#1a1a1a";
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar {
+    width: $scrollbar-thickness;
+    cursor: pointer;
+  }
+  ::-webkit-scrollbar:horizontal {
+    height: $scrollbar-thickness;
+    cursor: pointer;
+  }
+  ::-webkit-scrollbar-thumb,
+  ::-webkit-scrollbar-thumb:horizontal {
+    background-color: fn.color(grayscale, 50);
+    border-radius: math.div($scrollbar-thickness, 2);
+    border: 2px solid fn.color(grayscale, white);
+    cursor: pointer;
+  }
+
+  @each $name, $color in themeColors.$colors {
+    &.#{"" + $name} ::-webkit-scrollbar-thumb,
+    &.#{"" + $name} ::-webkit-scrollbar-thumb:horizontal {
+      background-color: $color;
+    }
+  }
+
+  .modal-content {
+    &::-webkit-scrollbar-thumb,
+    &::-webkit-scrollbar-thumb:horizontal {
+      background-color: fn.color-var(primary, base);
+    }
+  }
+}

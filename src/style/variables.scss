@@ -1,0 +1,128 @@
+@use "sass:map";
+@use "sass:math";
+
+$app-prefix: moc;
+$kit-prefix: npx;
+
+$grayscale-colors: (
+  10: #f6f6f6,
+  20: #e3e3e3,
+  30: #cccccc,
+  40: #b3b3b3,
+  50: #808080,
+  60: #4d4d4d,
+  70: #1a1a1a,
+  black: #000000,
+  white: #ffffff
+);
+
+$functional-colors: (
+  accent-pale: #e6f7ff,
+  accent-light: #80d8ff,
+  accent: #00b1ff,
+  accent-dark: #00a1e8,
+  functional1-pale: #f5edff,
+  functional1-light: #cba3ff,
+  functional1: #9747ff,
+  functional1-dark: #8941e8,
+  functional2-pale: #fef1e6,
+  functional2-light: #fab780,
+  functional2: #f56e00,
+  functional2-dark: #df6400
+);
+
+$primary-colors: (
+  pale: #f4f5ff,
+  light: #8f9eff,
+  base: #1e3cff,
+  dark: #1b37e8
+);
+
+$semantic-colors: (
+  error-pale: #faeaec,
+  error-light: #e794a2,
+  error: #cf2845,
+  error-dark: #bc243f,
+  info-pale: #e6f7ff,
+  info-light: #94dce6,
+  info: #28cde3,
+  info-dark: #24bbcf,
+  success-pale: #eafaf0,
+  success-light: #94e7b2,
+  success: #28cf64,
+  success-dark: #24bc5b,
+  warning-pale: #fff8e6,
+  warning-light: #fad880,
+  warning: #f4b000,
+  warning-dark: #dea000
+);
+
+$service-colors: (
+  filler: #646464,
+  transparent: #0000,
+  background: #dce6ed,
+  overlay: rgba(0 0 0 / 50%)
+);
+
+$colors: (
+  functional: $functional-colors,
+  grayscale: $grayscale-colors,
+  primary: $primary-colors,
+  semantic: $semantic-colors,
+  service: $service-colors
+);
+
+$base-unit: 1rem;
+
+$spacing: (
+  min: 0.125 * $base-unit,
+  xxs: 0.25 * $base-unit,
+  xs: 0.5 * $base-unit,
+  xsp: 0.75 * $base-unit,
+  s: 1 * $base-unit,
+  m: 1.5 * $base-unit,
+  l: 2 * $base-unit,
+  lp: 2.25 * $base-unit,
+  xl: 2.5 * $base-unit,
+  xlp: 2.75 * $base-unit,
+  xxl: 3 * $base-unit,
+  ul: 3.5 * $base-unit,
+  max: 4 * $base-unit
+);
+
+$radii: (
+  a: 0.125 * $base-unit,
+  b: 0.25 * $base-unit,
+  c: 0.375 * $base-unit,
+  d: 0.5 * $base-unit,
+  e: 0.75 * $base-unit,
+  f: 1.5 * $base-unit
+);
+
+$font-sizes: (
+  h1: $base-unit * 4,
+  h2: $base-unit * 2.5,
+  h3: $base-unit * 2,
+  h4: $base-unit * 1.375,
+  h5: $base-unit * 1.25,
+  h6: $base-unit * 1.125,
+  normal: $base-unit,
+  default: $base-unit,
+  small: math.div($base-unit * 7, 8),
+  smaller: $base-unit * 0.75,
+  caption: math.div($base-unit * 5, 8)
+);
+
+$elevation-color: var(--#{$app-prefix}-primary-light-color, map.get($primary-colors, light));
+$elevations: (
+  0 ($base-unit * 0.125) ($base-unit * 0.25) 0 color-mix(in srgb, var(--#{$app-prefix}-elevation-color), transparent 84%),
+  0 ($base-unit * 0.25) ($base-unit * 0.5) 0 color-mix(in srgb, var(--#{$app-prefix}-elevation-color), transparent 84%),
+  0 ($base-unit * 0.375) ($base-unit * 0.75) 0 color-mix(in srgb, var(--#{$app-prefix}-elevation-color), transparent 76%),
+  0 ($base-unit * 0.5) ($base-unit * 1.5) 0 color-mix(in srgb, var(--#{$app-prefix}-elevation-color), transparent 68%)
+);
+
+$durations: (
+  fast: 0.1s,
+  normal: 0.3s,
+  slow: 0.5s
+);

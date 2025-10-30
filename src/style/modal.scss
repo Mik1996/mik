@@ -1,0 +1,88 @@
+@use "functions.scss" as fn;
+@use "mixins.scss" as mx;
+@use "sass:list";
+
+$variants: (
+  warning: (
+    semantic,
+    semantic,
+    warning,
+    warning-dark
+  ),
+  danger: (
+    semantic,
+    semantic,
+    error,
+    error-dark
+  ),
+  default: (
+    functional,
+    primary,
+    accent,
+    base
+  ),
+  nocolor: (
+    functional,
+    primary,
+    accent,
+    base
+  )
+);
+
+npx-modal {
+  --npx-palette-accent: #{fn.color(primary, base)};
+  --npx-palette-primary: #{fn.color(primary, base)};
+  --custom-box-shadow: #{fn.color(primary, base)};
+  --custom-background-color-hovered: #{fn.color(primary, light)};
+  --npx-palette-50-primary: #{fn.color(primary, light)};
+  --custom-color-hovered: #{fn.color(grayscale, white)};
+}
+
+npx-modal:not([variant]) {
+  npx-button {
+    &[outlined] {
+      border-color: fn.color-var(functional, accent);
+      color: fn.color-var(functional, accent);
+
+      &:hover:not([disabled]) {
+        color: fn.color-var(primary, base);
+        border-color: fn.color-var(primary, base);
+      }
+    }
+    &:not([outlined]) {
+      background-color: fn.color-var(functional, accent);
+
+      &:hover:not([disabled]) {
+        background-color: fn.color-var(primary, base);
+      }
+    }
+  }
+}
+
+@each $variant-name, $colors in $variants {
+  $category: list.nth($colors, 1);
+  $category-hover: list.nth($colors, 2);
+  $color: list.nth($colors, 3);
+  $hover-color: list.nth($colors, 4);
+
+  npx-modal[variant="#{$variant-name}"] {
+    npx-button {
+      &[outlined] {
+        border-color: fn.color-var($category, $color);
+        color: fn.color-var($category, $color);
+
+        &:hover:not([disabled]) {
+          color: fn.color-var($category-hover, $hover-color);
+          border-color: fn.color-var($category-hover, $hover-color);
+        }
+      }
+      &:not([outlined]) {
+        background-color: fn.color-var($category, $color);
+
+        &:hover:not([disabled]) {
+          background-color: fn.color-var($category-hover, $hover-color);
+        }
+      }
+    }
+  }
+}

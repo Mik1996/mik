@@ -1,0 +1,80 @@
+@use "functions.scss" as fn;
+
+$green: fn.color(semantic, success-dark);
+$orange: fn.color(functional, functional2-dark);
+$red: fn.color(semantic, error-dark);
+$primary: fn.color(primary, dark);
+$purple: fn.color(functional, functional1-dark);
+$cyan: fn.color(semantic, info-dark);
+$yellow: fn.color(semantic, warning-dark);
+$default: fn.color(grayscale, 70);
+
+$colors: (
+  green: $green,
+  orange: $orange,
+  red: $red,
+  primary: $primary,
+  purple: $purple,
+  cyan: $cyan,
+  yellow: $yellow,
+  default: $default
+);
+
+$themes: (
+  primary: (
+    primary,
+    base,
+    pale,
+    light,
+    dark
+  ),
+  green: (
+    semantic,
+    success,
+    success-pale,
+    success-light,
+    success-dark
+  ),
+  orange: (
+    functional,
+    functional2,
+    functional2-pale,
+    functional2-light,
+    functional2-dark
+  ),
+  red: (
+    semantic,
+    error,
+    error-pale,
+    error-light,
+    error-dark
+  ),
+  purple: (
+    functional,
+    functional1,
+    functional1-pale,
+    functional1-light,
+    functional1-dark
+  ),
+  cyan: (
+    semantic,
+    info,
+    info-pale,
+    info-light,
+    info-dark
+  ),
+  yellow: (
+    semantic,
+    warning,
+    warning-pale,
+    warning-light,
+    warning-dark
+  ),
+  default: (
+    grayscale,
+    50,
+    30,
+    40,
+    70
+  )
+);
