@@ -30,18 +30,18 @@ const initalForm: User = { firstName: '', lastName: '', email: '', notifyByEmail
 const nameSchema: Schema<string> = schema((path) => {
   required(path, { message: 'REQUIRED_FIELD' });
   minLength(path, 3, { message: 'MINLENGHT_3_FIELD' });
-  validate(path, (c) =>
-    c.value().toLowerCase() === 'foo'
-      ? customError({ kind: 'foo', message: 'This field cannot be "Foo"' })
-      : null
-  );
+  // validate(path, (c) =>
+  //   c.value().toLowerCase() === 'foo'
+  //     ? customError({ kind: 'foo', message: 'This field cannot be "Foo"' })
+  //     : null
+  // );
 });
 
 @Component({
   selector: 'app-form',
   imports: [Field, TranslatePipe, TranslateDirective],
-  templateUrl: './form.html',
-  styleUrl: './form.scss',
+  templateUrl: './form.component.html',
+  styleUrl: './form.component.scss',
   standalone: true,
 })
 export class FormComponent {
@@ -80,7 +80,7 @@ export class FormComponent {
           method: 'PUT',
           body: JSON.stringify(form().value()),
         });
-        form().reset(); // reimposta come dirty e touched, non tocca i valori
+        form().reset();
 
         /**
          * In quest'esempio, vedremo che l'errore verrà visualizzato tra gli errori di email

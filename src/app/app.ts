@@ -1,7 +1,6 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { FormComponent } from './form/form';
-import { TranslateService } from '@ngx-translate/core';
+import { FormComponent } from './form/form.component';
 
 @Component({
   selector: 'app-root',
