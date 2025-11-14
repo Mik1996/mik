@@ -39,7 +39,7 @@
 }
 
 @function radius($size: b) {
-  @return map.get(vars.$radii, $size);
+  @return map.get(vars.$radius, $size);
 }
 
 @function radius-var-name($size: b) {

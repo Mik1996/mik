@@ -1,48 +1,81 @@
-@font-face {
-  font-family: GT-America;
-  src: local(GT-America-Regular), url(./../assets/fonts/GT-America-Regular.woff2) format('woff2');
-  font-weight: normal;
-  font-style: normal;
+@use "sass:string";
+@use "sass:map";
+
+@use "variables.scss" as vars;
+
+:root {
+  // font-sizes
+  --step--2: clamp(0.434rem, 0.3496rem + 0.3754cqi, 0.8rem);
+  --step--1: clamp(0.5208rem, 0.4103rem + 0.4915cqi, 1rem);
+  --step-0: clamp(0.625rem, 0.4808rem + 0.641cqi, 1.25rem);
+  --step-1: clamp(0.75rem, 0.5625rem + 0.8333cqi, 1.5625rem);
+  --step-2: clamp(0.9rem, 0.657rem + 1.0801cqi, 1.9531rem);
+  --step-3: clamp(1.08rem, 0.7658rem + 1.3963cqi, 2.4414rem);
+  --step-4: clamp(1.296rem, 0.8908rem + 1.8008cqi, 3.0518rem);
+  --step-5: clamp(1.5552rem, 1.0338rem + 2.3174cqi, 3.8147rem);
+
+  // spacings
+  --space-1: clamp(0.25rem, 0.18rem + 0.3cqi, 0.5rem); /* 4 → 8px */
+  --space-2: clamp(0.5rem, 0.36rem + 0.6cqi, 1rem); /* 8 → 16px */
+  --space-3: clamp(0.75rem, 0.54rem + 0.9cqi, 1.5rem); /* 12 → 24px */
+  --space-4: clamp(1rem, 0.72rem + 1.2cqi, 2rem); /* 16 → 32px */
+  --space-5: clamp(1.25rem, 0.9rem + 1.5cqi, 2.5rem); /* 20 → 40px */
+  --space-6: clamp(1.5rem, 1.08rem + 1.8cqi, 3rem); /* 24 → 48px */
+  --space-7: clamp(1.75rem, 1.26rem + 2.1cqi, 3.5rem); /* 28 → 56px */
+  --space-8: clamp(2rem, 1.44rem + 2.4cqi, 4rem); /* 32 → 64px */
 }
-@font-face {
-  font-family: GT-America;
-  src: local(GT-America-light), url(./../assets/fonts/GT-America-Light.woff2) format('woff2');
-  font-weight: 300;
-  font-style: normal;
+
+/*
+ * Utilizzare "$important: true" SOLO nei casi in cui non si ha controllo del codice di terze parti
+ */
+@mixin fluid-type($step, $important: false) {
+  $imp: if($important, '!important', '');
+  font-size: map.get(vars.$font-steps, $step) string.unquote($imp);
+  line-height: 1.2 string.unquote($imp); // utile per bilanciare la scala
 }
-@font-face {
-  font-family: GT-America;
-  src: local(GT-America-Bold), url(./../assets/fonts/GT-America-Bold.woff2) format('woff2');
-  font-weight: bold;
-  font-style: normal;
+
+h1 {
+  @include fluid-type(5);
+  font-weight: 700;
 }
-@font-face {
-  font-family: GT-America;
-  src: local(GT-America-Medium), url(./../assets/fonts/GT-America-Medium.woff2) format('woff2');
+
+h2 {
+  @include fluid-type(4);
+  font-weight: 700;
+}
+
+h3 {
+  @include fluid-type(3);
+  font-weight: 600;
+}
+
+h4 {
+  @include fluid-type(2);
+  font-weight: 600;
+}
+
+h5 {
+  @include fluid-type(1);
   font-weight: 500;
-  font-style: normal;
 }
-@font-face {
-  font-family: GT-America;
-  src: local(GT-America-Regular-Italic), url(./../assets/fonts/GT-America-Regular-Italic.woff2) format('woff2');
-  font-weight: normal;
-  font-style: italic;
-}
-@font-face {
-  font-family: GT-America;
-  src: local(GT-America-light-Italic), url(./../assets/fonts/GT-America-Light-Italic.woff2) format('woff2');
-  font-weight: 300;
-  font-style: italic;
-}
-@font-face {
-  font-family: GT-America;
-  src: local(GT-America-Bold-Italic), url(./../assets/fonts/GT-America-Bold-Italic.woff2) format('woff2');
-  font-weight: bold;
-  font-style: italic;
-}
-@font-face {
-  font-family: GT-America;
-  src: local(GT-America-Medium-Italic), url(./../assets/fonts/GT-America-Medium-Italic.woff2) format('woff2');
+
+h6,
+label,
+button {
+  @include fluid-type(0);
   font-weight: 500;
-  font-style: italic;
+}
+
+p,
+li,
+span {
+  @include fluid-type(0);
+}
+
+small {
+  @include fluid-type(-1);
+}
+
+::placeholder {
+  @include fluid-type(0);
 }

@@ -3,7 +3,6 @@ import { Component, signal } from '@angular/core';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import {
   apply,
-  customError,
   email,
   Field,
   form,
@@ -12,10 +11,9 @@ import {
   schema,
   Schema,
   submit,
-  validate,
   validateHttp,
 } from '@angular/forms/signals';
-import { TranslatePipe, TranslateDirective } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 import { debounceTime } from 'rxjs';
 
 interface User {
@@ -39,7 +37,7 @@ const nameSchema: Schema<string> = schema((path) => {
 
 @Component({
   selector: 'app-form',
-  imports: [Field, TranslatePipe, TranslateDirective],
+  imports: [Field, TranslatePipe],
   templateUrl: './form.component.html',
   styleUrl: './form.component.scss',
   standalone: true,
@@ -88,11 +86,13 @@ export class FormComponent {
         // throw Error('Could not save user with this email...');
         return undefined; // Nessun errore
       } catch (error) {
-        return [{
-          kind: 'server',
-          field: form.email, // per esempio...
-          message: (error as Error).message
-        }]
+        return [
+          {
+            kind: 'server',
+            field: form.email, // per esempio...
+            message: (error as Error).message,
+          },
+        ];
       }
     });
   };

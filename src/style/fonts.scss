@@ -1,0 +1,55 @@
+@font-face {
+  font-family: GT-America;
+  src: local(GT-America-Regular), url(../app/assets/fonts/GT-America-Regular.woff2) format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: GT-America;
+  src: local(GT-America-light), url(../app/assets/fonts/GT-America-Light.woff2) format('woff2');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: GT-America;
+  src: local(GT-America-Bold), url(../app/assets/fonts/GT-America-Bold.woff2) format('woff2');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: GT-America;
+  src: local(GT-America-Medium), url(../app/assets/fonts/GT-America-Medium.woff2) format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: GT-America;
+  src: local(GT-America-Regular-Italic), url(../app/assets/fonts/GT-America-Regular-Italic.woff2) format('woff2');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: GT-America;
+  src: local(GT-America-light-Italic), url(../app/assets/fonts/GT-America-Light-Italic.woff2) format('woff2');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: GT-America;
+  src: local(GT-America-Bold-Italic), url(../app/assets/fonts/GT-America-Bold-Italic.woff2) format('woff2');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: GT-America;
+  src: local(GT-America-Medium-Italic), url(../app/assets/fonts/GT-America-Medium-Italic.woff2) format('woff2');
+  font-weight: 500;
+  font-style: italic;
+}

@@ -1,8 +1,7 @@
 @use "sass:map";
 @use "sass:math";
 
-$app-prefix: moc;
-$kit-prefix: npx;
+$app-prefix: mik;
 
 $grayscale-colors: (
   10: #f6f6f6,
@@ -41,7 +40,7 @@ $primary-colors: (
 $semantic-colors: (
   error-pale: #faeaec,
   error-light: #e794a2,
-  error: #cf2845,
+  error: #ff4b4b,
   error-dark: #bc243f,
   info-pale: #e6f7ff,
   info-light: #94dce6,
@@ -72,45 +71,37 @@ $colors: (
   service: $service-colors
 );
 
-$base-unit: 1rem;
-
-$spacing: (
-  min: 0.125 * $base-unit,
-  xxs: 0.25 * $base-unit,
-  xs: 0.5 * $base-unit,
-  xsp: 0.75 * $base-unit,
-  s: 1 * $base-unit,
-  m: 1.5 * $base-unit,
-  l: 2 * $base-unit,
-  lp: 2.25 * $base-unit,
-  xl: 2.5 * $base-unit,
-  xlp: 2.75 * $base-unit,
-  xxl: 3 * $base-unit,
-  ul: 3.5 * $base-unit,
-  max: 4 * $base-unit
+$spacings: (
+  min: var(--space-1),
+  xs: var(--space-2),
+  s: var(--space-3),
+  m: var(--space-4),
+  l: var(--space-5),
+  xl: var(--space-6),
+  ul: var(--space-7),
+  max: var(--space-8),
 );
 
-$radii: (
+$font-steps: (
+  -2: var(--step--2),
+  -1: var(--step--1),
+  0: var(--step-0),
+  1: var(--step-1),
+  2: var(--step-2),
+  3: var(--step-3),
+  4: var(--step-4),
+  5: var(--step-5)
+);
+
+$base-unit: 1rem;
+
+$radius: (
   a: 0.125 * $base-unit,
   b: 0.25 * $base-unit,
   c: 0.375 * $base-unit,
   d: 0.5 * $base-unit,
   e: 0.75 * $base-unit,
   f: 1.5 * $base-unit
-);
-
-$font-sizes: (
-  h1: $base-unit * 4,
-  h2: $base-unit * 2.5,
-  h3: $base-unit * 2,
-  h4: $base-unit * 1.375,
-  h5: $base-unit * 1.25,
-  h6: $base-unit * 1.125,
-  normal: $base-unit,
-  default: $base-unit,
-  small: math.div($base-unit * 7, 8),
-  smaller: $base-unit * 0.75,
-  caption: math.div($base-unit * 5, 8)
 );
 
 $elevation-color: var(--#{$app-prefix}-primary-light-color, map.get($primary-colors, light));

@@ -1,12 +1,9 @@
-@use "sass:list";
-@use "sass:math";
-@use "variables.scss" as vars;
-@use "theme-colors.scss" as themeColors;
-@use "functions.scss" as fn;
-@use "spacings.scss" as spacings;
-@use "status-colors.scss" as statusColors;
-
-$scrollbar-thickness: fn.spacing(xsp);
+@use 'sass:list';
+@use 'sass:math';
+@use 'sass:map';
+@use 'variables.scss' as vars;
+@use 'theme-colors.scss' as themeColors;
+@use 'functions.scss' as fn;
 
 * {
   box-sizing: border-box;
@@ -14,96 +11,185 @@ $scrollbar-thickness: fn.spacing(xsp);
 }
 
 :root {
-  --black: #000000;
-  --blu: #0073ff;
-  --cyan: #30d5c8;
-  --danger: #cf2845;
-  --danger-dark: #af0800;
-  --dark-green: #90d600;
-  --grey0: #646464;
-  --grey1: #777777;
-  --light-green: #b8e5af;
-  --light-grey: #ced4da;
-  --lilla: #db0d71;
-  --orange: #f56e00;
-  --primary: #3bc75d;
-  --primary-25: #3bc75d1a;
-  --purple: #770c8a;
-  --red-100: #d52c20;
-  --success: #28cf64;
-  --success-25: #28cf641a;
-  --white: #ffffff;
-  --yellow: #ffca01;
+  // TODO: mettere in variables.scss
+  --input-bg: rgba(30, 30, 30, 0.9);
+  --accent: #3c3c3c;
+  --accent-alt: #ffd700;
+  --text-light: #e0e0e0;
 
   @each $section, $bundle in vars.$colors {
     @each $name, $color in $bundle {
       #{fn.color-var-name($section, $name)}: $color;
     }
   }
-
-  @each $size, $value in vars.$spacing {
-    #{fn.spacing-var-name($size)}: $value;
-  }
-
-  @each $radius, $value in vars.$radii {
-    #{fn.radius-var-name($radius)}: $value;
-  }
-
-  @each $size, $value in vars.$font-sizes {
-    #{fn.font-size-var-name($size)}: $value;
-  }
-
-  #{fn.prop-var-name(elevation-color)}: vars.$elevation-color;
-
-  @for $level from 1 through list.length(vars.$elevations) {
-    #{fn.elevation-var-name($level)}: fn.elevation($level);
-  }
-
-  @each $speed, $value in vars.$durations {
-    #{fn.duration-var-name($speed)}: $value;
-  }
-
-  color: fn.color-var(grayscale, 60);
-  font-family:
-    GT-America,
-    IBM Plex Sans,
-    system-ui,
-    sans-serif;
 }
 
 body {
-  padding: 0;
-  margin: 0;
-  background-color: "#1a1a1a";
+  width: 100vw;
+  height: 100vh;
+  padding: map.get(vars.$spacings, s);
+  font-family: GT-America, IBM Plex Sans, system-ui, sans-serif;
+  background-image: url('../src/app/assets/images/background.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
 
-  /* SCROLLBAR */
-  ::-webkit-scrollbar {
-    width: $scrollbar-thickness;
-    cursor: pointer;
-  }
-  ::-webkit-scrollbar:horizontal {
-    height: $scrollbar-thickness;
-    cursor: pointer;
-  }
-  ::-webkit-scrollbar-thumb,
-  ::-webkit-scrollbar-thumb:horizontal {
-    background-color: fn.color(grayscale, 50);
-    border-radius: math.div($scrollbar-thickness, 2);
-    border: 2px solid fn.color(grayscale, white);
-    cursor: pointer;
-  }
+// ---------------------------------------------
 
-  @each $name, $color in themeColors.$colors {
-    &.#{"" + $name} ::-webkit-scrollbar-thumb,
-    &.#{"" + $name} ::-webkit-scrollbar-thumb:horizontal {
-      background-color: $color;
+// Labels
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+pre,
+label {
+  color: var(--accent-alt);
+  text-shadow: 0 0 20px var(--accent-alt), 0 0 10px var(--accent-alt);
+}
+
+// Inputs
+input {
+  // text & email
+  &[type='text'],
+  &[type='email'] {
+    width: 100%;
+    padding: map.get(vars.$spacings, s) map.get(vars.$spacings, m);
+    background: var(--input-bg);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: map.get(vars.$spacings, xs);
+    color: var(--text-light);
+    transition: all 0.3s ease;
+    box-shadow: inset 0 0 map.get(vars.$spacings, xs) rgba(0, 0, 0, 0.6);
+
+    &:focus,
+    &:focus-visible {
+      outline: none;
+      border-color: var(--accent-alt);
+      box-shadow: 0 0 map.get(vars.$spacings, m) var(--accent-alt), inset 0 0 10px rgba(0, 255, 255, 0.4);
+      transform: scale(1.02);
     }
   }
 
-  .modal-content {
-    &::-webkit-scrollbar-thumb,
-    &::-webkit-scrollbar-thumb:horizontal {
-      background-color: fn.color-var(primary, base);
+  // Checkbox
+  &[type='checkbox'] {
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--accent-alt);
+    border-radius: map.get(vars.$spacings, min);
+    background: rgba(10, 10, 15, 0.9);
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 map.get(vars.$spacings, s) rgba(0, 255, 255, 0.2);
+
+    &:hover {
+      box-shadow: 0 0 map.get(vars.$spacings, xl) var(--accent-alt);
+      transform: scale(1.1);
     }
+
+    &:checked {
+      background: linear-gradient(135deg, var(--accent), var(--accent-alt));
+      border-color: transparent;
+      box-shadow: 0 0 map.get(vars.$spacings, l) var(--accent), 0 0 50px var(--accent-alt);
+      border: 2px solid var(--accent-alt);
+      transform: scale(1.15);
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 1px;
+        left: 6px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+        animation: checkmarkPop 0.3s ease forwards;
+        filter: drop-shadow(0 0 6px white);
+      }
+    }
+  }
+}
+
+// Button
+button {
+  width: 100%;
+  padding: map.get(vars.$spacings, s) 0;
+  background: linear-gradient(135deg, var(--accent), var(--accent-alt));
+  border: none;
+  border-radius: map.get(vars.$spacings, l);
+  color: var(--text-light);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  text-shadow: 0 0 map.get(vars.$spacings, xs) var(--accent-alt);
+  position: relative;
+  overflow: hidden;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: all 0.5s;
+  }
+
+  &:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 0 map.get(vars.$spacings, s) var(--accent), 0 0 map.get(vars.$spacings, m) var(--accent-alt);
+  }
+
+  &:hover::before {
+    left: 100%;
+  }
+
+  &:disabled {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.3);
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+}
+
+// Lists
+ul,
+ol {
+  padding-left: map.get(vars.$spacings, xs);
+
+  li {
+    animation: slideIn 0.4s ease;
+    text-shadow: 0 0 map.get(vars.$spacings, s) var(--danger);
+  }
+}
+
+@keyframes checkmarkPop {
+  0% {
+    transform: scale(0) rotate(45deg);
+  }
+  60% {
+    transform: scale(1.3) rotate(45deg);
+  }
+  100% {
+    transform: scale(1) rotate(45deg);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }

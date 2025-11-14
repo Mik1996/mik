@@ -1,0 +1,8 @@
+{
+    "i18n-ally.localesPaths": [
+        "public/i18n"
+    ],
+    "conventionalCommits.scopes": [
+        "Dynamic-font-size"
+    ]
+}
