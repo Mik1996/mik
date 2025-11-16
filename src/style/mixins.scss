@@ -1,0 +1,64 @@
+@use "sass:string";
+@use "functions.scss" as fn;
+
+/*
+ * Utilizzare "$important: true" SOLO nei casi in cui non si ha controllo del codice di terze parti
+ */
+@mixin fluid-type($step, $important: false) {
+  $imp: if($important, '!important', '');
+  font-size: fn.font-size($step) string.unquote($imp);
+  line-height: 1.2 string.unquote($imp); // utile per bilanciare la scala
+}
+
+/* Animation mixins using keyframes */
+@mixin animate($name, $duration: fn.duration(fast), $timing: ease, $fill: both, $delay: 0s, $iteration: 1) {
+  animation: #{$name} $duration $timing $delay $iteration $fill;
+}
+
+@mixin animate-checkmark-pop($duration: fn.duration(fast), $timing: ease, $fill: forwards) {
+  animation: checkmarkPop $duration $timing $fill;
+}
+
+@mixin animate-spin($duration: fn.duration(very-slow), $timing: linear, $iteration: infinite) {
+  animation: spin $duration $timing 0s $iteration both;
+}
+
+@mixin animate-pulse($duration: fn.duration(slow), $timing: ease-in-out, $iteration: infinite) {
+  animation: pulse $duration $timing 0s $iteration both;
+}
+
+@mixin animate-bounce($duration: fn.duration(normal), $timing: ease, $iteration: infinite) {
+  animation: bounce $duration $timing 0s $iteration both;
+}
+
+@mixin animate-shimmer($duration: fn.duration(very-slow), $timing: linear, $iteration: infinite) {
+  animation: shimmer $duration $timing 0s $iteration both;
+}
+
+@mixin animate-slide-right($duration: fn.duration(normal), $timing: ease, $fill: both) {
+  animation: slideRight $duration $timing 0s 1 $fill;
+}
+
+@mixin animate-slide-up($duration: fn.duration(normal), $timing: ease-out, $fill: both) {
+  animation: slideUp $duration $timing 0s 1 $fill;
+}
+
+@mixin animate-slide-down($duration: fn.duration(normal), $timing: ease-out, $fill: both) {
+  animation: slideDown $duration $timing 0s 1 $fill;
+}
+
+@mixin animate-fade-in($duration: fn.duration(fast), $timing: ease, $fill: both) {
+  animation: fadeIn $duration $timing 0s 1 $fill;
+}
+
+@mixin animate-fade-out($duration: fn.duration(fast), $timing: ease, $fill: both) {
+  animation: fadeOut $duration $timing 0s 1 $fill;
+}
+
+@mixin animate-scale-in($duration: fn.duration(fast), $timing: ease-out, $fill: both) {
+  animation: scaleIn $duration $timing 0s 1 $fill;
+}
+
+@mixin animate-scale-out($duration: fn.duration(fast), $timing: ease-in, $fill: both) {
+  animation: scaleOut $duration $timing 0s 1 $fill;
+}

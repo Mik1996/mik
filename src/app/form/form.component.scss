@@ -1,4 +1,5 @@
 @use 'functions.scss' as fn;
+@use 'mixins.scss' as mx;
 
 form {
   container-type: inline-size;
@@ -11,7 +12,7 @@ form {
   border: 1px solid rgba(fn.color(grayscale, white), 0.1);
   position: relative;
   overflow: hidden;
-  animation: fadeIn fn.duration(slow) ease forwards;
+  @include mx.animate-fade-in(fn.duration(fast), ease, forwards);
   display: flex;
   flex-direction: column;
   gap: fn.spacing(s);
@@ -40,16 +41,5 @@ form {
       text-shadow: 0 0 fn.spacing(s) fn.color(semantic, error);
       list-style: none;
     }
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(fn.spacing(xl));
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
   }
 }
