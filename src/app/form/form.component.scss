@@ -1,37 +1,30 @@
-@use 'sass:map';
-@use 'variables.scss' as vars;
 @use 'functions.scss' as fn;
-
-// TODO usare variables
-$form-bg: #333333;
-$form-border: rgba(255, 255, 255, 0.1);
 
 form {
   container-type: inline-size;
   min-width: 350px;
   max-width: 50vw;
-  margin: map.get(vars.$spacings, max) auto;
-  padding: map.get(vars.$spacings, m);
-  border-radius: map.get(vars.$spacings, m);
-  background: $form-bg;
-  border: 1px solid $form-border;
-  box-shadow: 0 0 map.get(vars.$spacings, max) rgba(255, 0, 255, 0.15);
+  margin: fn.spacing(max) auto;
+  padding: fn.spacing(m);
+  border-radius: fn.radius(f);
+  background: fn.color(grayscale, 70);
+  border: 1px solid rgba(fn.color(grayscale, white), 0.1);
   position: relative;
   overflow: hidden;
-  animation: fadeIn 0.8s ease forwards;
+  animation: fadeIn fn.duration(slow) ease forwards;
   display: flex;
   flex-direction: column;
-  gap: map.get(vars.$spacings, s);
+  gap: fn.spacing(s);
 
   .form-field-wrapper {
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: map.get(vars.$spacings, min);
+    gap: fn.spacing(min);
     z-index: 1;
 
     label {
-      padding-left: map.get(vars.$spacings, min);
+      padding-left: fn.spacing(min);
       text-transform: uppercase;
     }
 
@@ -44,7 +37,7 @@ form {
 
     li {
       color: fn.color(semantic, error);
-      text-shadow: 0 0 map.get(vars.$spacings, s) fn.color(semantic, error);
+      text-shadow: 0 0 fn.spacing(s) fn.color(semantic, error);
       list-style: none;
     }
   }
@@ -53,7 +46,7 @@ form {
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(fn.spacing(xl));
   }
   to {
     opacity: 1;

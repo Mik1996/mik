@@ -14,6 +14,7 @@
   @return if($amount == 1, #{prop-var(base-unit, vars.$base-unit)}, calc(#{prop-var(base-unit, vars.$base-unit)} * #{$amount}));
 }
 
+// Colors
 @function color($section, $name: base) {
   @return map.get(map.get(vars.$colors, $section), $name);
 }
@@ -26,6 +27,8 @@
   @return var(#{color-var-name($section, $name)}, #{color($section, $name)});
 }
 
+
+// Spacings
 @function spacing($size: m) {
   @return map.get(vars.$spacing, $size);
 }
@@ -38,6 +41,8 @@
   @return var(spacing-var-name($size), spacing($size));
 }
 
+
+// Radius
 @function radius($size: b) {
   @return map.get(vars.$radius, $size);
 }
@@ -50,6 +55,7 @@
   @return var(radius-var-name($size), radius($size));
 }
 
+// Font sizes
 @function font-size($name) {
   @return map.get(vars.$font-sizes, $name);
 }
@@ -62,6 +68,8 @@
   @return var(font-size-var-name($name), font-size($name));
 }
 
+
+// Elevations
 @function elevation($level) {
   @return list.nth(vars.$elevations, $level);
 }
@@ -74,6 +82,7 @@
   @return var(elevation-var-name($level), elevation($level));
 }
 
+// Durations
 @function duration($speed: normal) {
   @return map.get(vars.$durations, $speed);
 }

@@ -1,8 +1,10 @@
-@use "sass:map";
-@use "sass:math";
+@use 'sass:map';
+@use 'sass:math';
 
 $app-prefix: mik;
+$base-unit: 1rem;
 
+// Colors
 $grayscale-colors: (
   10: #f6f6f6,
   20: #e3e3e3,
@@ -10,9 +12,10 @@ $grayscale-colors: (
   40: #b3b3b3,
   50: #808080,
   60: #4d4d4d,
-  70: #1a1a1a,
+  70: #333333,
+  80: #1a1a1a,
   black: #000000,
-  white: #ffffff
+  white: #ffffff,
 );
 
 $functional-colors: (
@@ -27,14 +30,14 @@ $functional-colors: (
   functional2-pale: #fef1e6,
   functional2-light: #fab780,
   functional2: #f56e00,
-  functional2-dark: #df6400
+  functional2-dark: #df6400,
 );
 
 $primary-colors: (
   pale: #f4f5ff,
   light: #8f9eff,
   base: #1e3cff,
-  dark: #1b37e8
+  dark: #1b37e8,
 );
 
 $semantic-colors: (
@@ -53,14 +56,14 @@ $semantic-colors: (
   warning-pale: #fff8e6,
   warning-light: #fad880,
   warning: #f4b000,
-  warning-dark: #dea000
+  warning-dark: #dea000,
 );
 
 $service-colors: (
   filler: #646464,
   transparent: #0000,
   background: #dce6ed,
-  overlay: rgba(0 0 0 / 50%)
+  overlay: rgba(0 0 0 / 50%),
 );
 
 $colors: (
@@ -68,10 +71,11 @@ $colors: (
   grayscale: $grayscale-colors,
   primary: $primary-colors,
   semantic: $semantic-colors,
-  service: $service-colors
+  service: $service-colors,
 );
 
-$spacings: (
+// Spacings
+$spacing: (
   min: var(--space-1),
   xs: var(--space-2),
   s: var(--space-3),
@@ -82,7 +86,8 @@ $spacings: (
   max: var(--space-8),
 );
 
-$font-steps: (
+// Font sizes
+$font-sizes: (
   -2: var(--step--2),
   -1: var(--step--1),
   0: var(--step-0),
@@ -93,27 +98,34 @@ $font-steps: (
   5: var(--step-5)
 );
 
-$base-unit: 1rem;
-
+// Radius
 $radius: (
   a: 0.125 * $base-unit,
   b: 0.25 * $base-unit,
   c: 0.375 * $base-unit,
   d: 0.5 * $base-unit,
   e: 0.75 * $base-unit,
-  f: 1.5 * $base-unit
+  f: 1.5 * $base-unit,
 );
 
+// Elevations
 $elevation-color: var(--#{$app-prefix}-primary-light-color, map.get($primary-colors, light));
 $elevations: (
-  0 ($base-unit * 0.125) ($base-unit * 0.25) 0 color-mix(in srgb, var(--#{$app-prefix}-elevation-color), transparent 84%),
-  0 ($base-unit * 0.25) ($base-unit * 0.5) 0 color-mix(in srgb, var(--#{$app-prefix}-elevation-color), transparent 84%),
-  0 ($base-unit * 0.375) ($base-unit * 0.75) 0 color-mix(in srgb, var(--#{$app-prefix}-elevation-color), transparent 76%),
-  0 ($base-unit * 0.5) ($base-unit * 1.5) 0 color-mix(in srgb, var(--#{$app-prefix}-elevation-color), transparent 68%)
+  0 ($base-unit * 0.125) ($base-unit * 0.25) 0
+    color-mix(in srgb, var(--#{$app-prefix}-elevation-color), transparent 84%),
+  0 ($base-unit * 0.25) ($base-unit * 0.5) 0
+    color-mix(in srgb, var(--#{$app-prefix}-elevation-color), transparent 84%),
+  0 ($base-unit * 0.375) ($base-unit * 0.75) 0
+    color-mix(in srgb, var(--#{$app-prefix}-elevation-color), transparent 76%),
+  0 ($base-unit * 0.5) ($base-unit * 1.5) 0
+    color-mix(in srgb, var(--#{$app-prefix}-elevation-color), transparent 68%)
 );
 
+// Durations
 $durations: (
-  fast: 0.1s,
-  normal: 0.3s,
-  slow: 0.5s
+  very-fast: 0.1s,
+  fast: 0.3s,
+  normal: 0.5s,
+  slow: 0.7s,
+  very-slow: 0.9s,
 );
