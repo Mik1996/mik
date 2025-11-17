@@ -1,5 +1,7 @@
 @use "sass:string";
+@use "sass:map";
 @use "functions.scss" as fn;
+@use "variables.scss" as vars;
 
 /*
  * Utilizzare "$important: true" SOLO nei casi in cui non si ha controllo del codice di terze parti
@@ -8,6 +10,19 @@
   $imp: if($important, '!important', '');
   font-size: fn.font-size($step) string.unquote($imp);
   line-height: 1.2 string.unquote($imp); // utile per bilanciare la scala
+}
+
+// Responsiveness
+@mixin has-min-width($device) {
+  $value: map.get(vars.$breakpoints, $device);
+
+  @if $value {
+    @media screen and (min-width: #{$value}) {
+      @content;
+    }
+  } @else {
+    @warn "⚠️ Breakpoint `#{$device}` non definito.";
+  }
 }
 
 /* Animation mixins using keyframes */

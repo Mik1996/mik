@@ -10,5 +10,5 @@ import { FormComponent } from './form/form.component';
   standalone: true,
 })
 export class App {
-  protected readonly title = signal('mik');
+  protected readonly title = signal('Mik');
 }

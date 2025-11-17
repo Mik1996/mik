@@ -1,5 +1,5 @@
 import { httpResource } from '@angular/common/http';
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import {
   apply,
@@ -15,19 +15,14 @@ import {
 } from '@angular/forms/signals';
 import { TranslatePipe } from '@ngx-translate/core';
 import { debounceTime } from 'rxjs';
-
-interface User {
-  firstName: string;
-  lastName: string;
-  email: string;
-  notifyByEmail: boolean;
-}
+import { User } from '../models/user';
 
 const initalForm: User = { firstName: '', lastName: '', email: '', notifyByEmail: false };
 
 const nameSchema: Schema<string> = schema((path) => {
   required(path, { message: 'REQUIRED_FIELD' });
   minLength(path, 3, { message: 'MINLENGHT_3_FIELD' });
+  // Example for a custom validator
   // validate(path, (c) =>
   //   c.value().toLowerCase() === 'foo'
   //     ? customError({ kind: 'foo', message: 'This field cannot be "Foo"' })
@@ -36,11 +31,12 @@ const nameSchema: Schema<string> = schema((path) => {
 });
 
 @Component({
-  selector: 'app-form',
+  selector: 'mik-form',
   imports: [Field, TranslatePipe],
   templateUrl: './form.component.html',
   styleUrl: './form.component.scss',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormComponent {
   protected readonly data = signal<User>(initalForm);

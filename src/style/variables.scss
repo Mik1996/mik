@@ -1,8 +1,16 @@
 @use 'sass:map';
-@use 'sass:math';
 
 $app-prefix: mik;
 $base-unit: 1rem;
+
+$breakpoints: (
+  mobile-sm: 360px, // es. iPhone SE, Galaxy S Mini
+  mobile-md: 480px, // es. iPhone 13 Mini, Pixel 4a
+  mobile-lg: 600px, // telefoni grandi o piccoli tablet in portrait
+  tablet-sm: 768px, // es. iPad Mini, Galaxy Tab
+  tablet-md: 992px, // es. iPad Air, tablet landscape
+  tablet-lg: 1200px, // es. iPad Pro, piccoli laptop
+);
 
 // Colors
 $grayscale-colors: (
@@ -23,10 +31,12 @@ $functional-colors: (
   accent-light: #80d8ff,
   accent: #00b1ff,
   accent-dark: #00a1e8,
+
   functional1-pale: #f5edff,
   functional1-light: #cba3ff,
   functional1: #9747ff,
   functional1-dark: #8941e8,
+
   functional2-pale: #fef1e6,
   functional2-light: #fab780,
   functional2: #f56e00,
@@ -45,14 +55,17 @@ $semantic-colors: (
   error-light: #e794a2,
   error: #ff4b4b,
   error-dark: #bc243f,
+
   info-pale: #e6f7ff,
   info-light: #94dce6,
   info: #28cde3,
   info-dark: #24bbcf,
+
   success-pale: #eafaf0,
   success-light: #94e7b2,
   success: #28cf64,
   success-dark: #24bc5b,
+
   warning-pale: #fff8e6,
   warning-light: #fad880,
   warning: #f4b000,

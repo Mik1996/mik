@@ -8,7 +8,7 @@ form {
   margin: fn.spacing(max) auto;
   padding: fn.spacing(m);
   border-radius: fn.radius(f);
-  background: fn.color(grayscale, 70);
+  background: fn.color(grayscale, 60);
   border: 1px solid rgba(fn.color(grayscale, white), 0.1);
   position: relative;
   overflow: hidden;
@@ -22,7 +22,6 @@ form {
     display: flex;
     flex-direction: column;
     gap: fn.spacing(min);
-    z-index: 1;
 
     label {
       padding-left: fn.spacing(min);
@@ -41,5 +40,11 @@ form {
       text-shadow: 0 0 fn.spacing(s) fn.color(semantic, error);
       list-style: none;
     }
+  }
+}
+
+@include mx.has-min-width('tablet-lg') {
+  form {
+    max-width: 30vw;
   }
 }
