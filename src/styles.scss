@@ -1,7 +1,8 @@
 @use 'variables.scss' as vars;
 @use 'functions.scss' as fn;
 @use 'mixins.scss' as mx;
-@use 'theme-colors.scss' as themes;
+@use 'themes.scss' as themes;
+@use 'modes.scss' as modes;
 @use 'keyframes.scss';
 @use 'sass:list';
 
@@ -199,83 +200,87 @@ form {
   $light: list.nth($theme-values, 4);
   $dark: list.nth($theme-values, 5);
 
-  body.#{'' + $theme-name} {
-    color: fn.color($section, $base);
-    background-image: url('../src/app/assets/images/background-#{$theme-name}.png');
+  html.#{'' + $theme-name} {
+    background-color: fn.color($section, $dark);
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    p,
-    span,
-    pre,
-    label {
-      text-shadow: 0 0 10px fn.color($section, $base), 0 0 0 fn.color($section, $base);
-    }
+    body {
+      color: fn.color($section, $base);
+      background-image: url('../src/app/assets/images/background-#{$theme-name}.png');
 
-    input {
-      // text & email
-      &[type='text'],
-      &[type='email'] {
-        color: fn.color($section, $pale);
-
-        &:focus,
-        &:focus-visible {
-          border-color: fn.color($section, $base);
-          box-shadow: 0 0 20px fn.color($section, $base),
-            inset 0 0 10px rgba(fn.color($section, $dark), 0.4);
-        }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      p,
+      span,
+      pre,
+      label {
+        text-shadow: 0 0 10px fn.color($section, $base), 0 0 0 fn.color($section, $base);
       }
-      &[type='checkbox'] {
-        border: 2px solid fn.color($section, $base);
-        box-shadow: 0 0 fn.spacing(s) rgba(fn.color($section, $dark), 0.2);
 
-        &:hover {
-          box-shadow: 0 0 fn.spacing(xl) fn.color($section, $base);
+      input {
+        // text & email
+        &[type='text'],
+        &[type='email'] {
+          color: fn.color($section, $pale);
+
+          &:focus,
+          &:focus-visible {
+            border-color: fn.color($section, $base);
+            box-shadow: 0 0 20px fn.color($section, $base),
+              inset 0 0 10px rgba(fn.color($section, $dark), 0.4);
+          }
         }
-
-        &:checked {
-          background: linear-gradient(135deg, fn.color(grayscale, 60), fn.color($section, $base));
-          box-shadow: 0 0 fn.spacing(l) fn.color(grayscale, 60),
-            0 0 fn.spacing(l) fn.color($section, $base);
+        &[type='checkbox'] {
           border: 2px solid fn.color($section, $base);
+          box-shadow: 0 0 fn.spacing(s) rgba(fn.color($section, $dark), 0.2);
+
+          &:hover {
+            box-shadow: 0 0 fn.spacing(xl) fn.color($section, $base);
+          }
+
+          &:checked {
+            background: linear-gradient(135deg, fn.color(grayscale, 60), fn.color($section, $base));
+            box-shadow: 0 0 fn.spacing(l) fn.color(grayscale, 60),
+              0 0 fn.spacing(l) fn.color($section, $base);
+            border: 2px solid fn.color($section, $base);
+          }
         }
       }
-    }
 
-    button {
-      color: fn.color($section, $pale);
-      background: linear-gradient(135deg, fn.color(grayscale, 60), fn.color($section, $base));
+      button {
+        color: fn.color($section, $pale);
+        background: linear-gradient(135deg, fn.color(grayscale, 60), fn.color($section, $base));
 
-      &:not(:disabled) {
-        text-shadow: 0 0 fn.spacing(xs) fn.color($section, $base);
+        &:not(:disabled) {
+          text-shadow: 0 0 fn.spacing(xs) fn.color($section, $base);
+        }
+
+        &:not(:disabled):hover {
+          box-shadow: 0 0 fn.spacing(s) fn.color(grayscale, 60),
+            0 0 fn.spacing(m) fn.color($section, $base);
+        }
       }
 
-      &:not(:disabled):hover {
-        box-shadow: 0 0 fn.spacing(s) fn.color(grayscale, 60),
-          0 0 fn.spacing(m) fn.color($section, $base);
+      &::-webkit-scrollbar-track {
+        background-color: fn.color($section, $pale);
       }
-    }
 
-    &::-webkit-scrollbar-track {
-      background-color: fn.color($section, $pale);
-    }
+      &::-webkit-scrollbar-thumb {
+        background-color: fn.color($section, $base);
+      }
 
-    &::-webkit-scrollbar-thumb {
-      background-color: fn.color($section, $base);
-    }
-
-    &::-webkit-scrollbar-thumb:hover {
-      background-color: fn.color($section, $dark);
+      &::-webkit-scrollbar-thumb:hover {
+        background-color: fn.color($section, $dark);
+      }
     }
   }
 }
 
 // Moding
-@each $mode-name, $mode-values in themes.$modes {
+@each $mode-name, $mode-values in modes.$modes {
   $background: list.nth($mode-values, 1);
   $surface: list.nth($mode-values, 2);
   $text-light: list.nth($mode-values, 3);

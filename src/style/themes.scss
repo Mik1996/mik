@@ -1,24 +1,3 @@
-@use 'functions.scss' as fn;
-
-$modes: (
-  light: (
-    background,
-    surface,
-    text-light,
-    text-base,
-    text-dark,
-    border,
-  ),
-  dark: (
-    background,
-    surface,
-    text-light,
-    text-base,
-    text-dark,
-    border,
-  ),
-);
-
 $themes: (
   blue: (
     primary,
