@@ -1,6 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FormComponent } from './form/form.component';
+import { ThemeService } from './services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,12 @@ import { FormComponent } from './form/form.component';
   templateUrl: './app.html',
   styleUrl: './app.scss',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class App {
-  protected readonly title = signal('Mik');
+  private readonly themeService = inject(ThemeService);
+
+  constructor() {
+    this.themeService.setTheme('cyan');
+  }
 }

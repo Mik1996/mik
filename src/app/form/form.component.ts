@@ -15,7 +15,7 @@ import {
 } from '@angular/forms/signals';
 import { TranslatePipe } from '@ngx-translate/core';
 import { debounceTime } from 'rxjs';
-import { User } from '../models/user';
+import { User } from '../models/user.interface';
 
 const initalForm: User = { firstName: '', lastName: '', email: '', notifyByEmail: false };
 

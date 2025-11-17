@@ -1,7 +1,11 @@
 @use 'variables.scss' as vars;
 @use 'functions.scss' as fn;
 @use 'mixins.scss' as mx;
+@use 'theme-colors.scss' as themes;
 @use 'keyframes.scss';
+@use 'sass:list';
+
+$scrollbar-thickness: 8px;
 
 :root {
   // font-sizes
@@ -36,31 +40,110 @@
   margin: 0;
 }
 
-body {
-  width: 100vw;
-  height: 100vh;
-  padding: fn.spacing(xs);
-  font-family: GT-America, IBM Plex Sans, system-ui, sans-serif;
-  color: fn.color(grayscale, white);
+html {
   background-image: url('../src/app/assets/images/background.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 }
 
-// Labels
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-span,
-pre,
-label {
-  color: fn.color(functional, accent);
-  text-shadow: 0 0 10px fn.color(functional, accent), 0 0 0 fn.color(functional, accent);
+body {
+  width: 100%;
+  height: 150vh;
+  padding: fn.spacing(xs);
+  font-family: GT-America, IBM Plex Sans, system-ui, sans-serif;
+
+  &::-webkit-scrollbar {
+    width: $scrollbar-thickness;
+    cursor: pointer;
+  }
+
+  &::-webkit-scrollbar:horizontal {
+    height: $scrollbar-thickness;
+    cursor: pointer;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: calc($scrollbar-thickness / 2);
+  }
+}
+
+// Theming
+@each $theme-name, $theme-values in themes.$themes {
+  $section: list.nth($theme-values, 1);
+  $base: list.nth($theme-values, 2);
+  $pale: list.nth($theme-values, 3);
+  $light: list.nth($theme-values, 4);
+  $dark: list.nth($theme-values, 5);
+
+  body.#{'' + $theme-name} {
+    color: fn.color($section, $base);
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    span,
+    pre,
+    label {
+      text-shadow: 0 0 10px fn.color($section, $base), 0 0 0 fn.color($section, $base);
+    }
+
+    input {
+      // text & email
+      &[type='text'],
+      &[type='email'] {
+        color: fn.color($section, $pale);
+
+        &:focus,
+        &:focus-visible {
+          border-color: fn.color($section, $base);
+          box-shadow: 0 0 20px fn.color($section, $base),
+            inset 0 0 10px rgba(fn.color($section, $dark), 0.4);
+        }
+      }
+      &[type='checkbox'] {
+        border: 2px solid fn.color($section, $base);
+        box-shadow: 0 0 fn.spacing(s) rgba(fn.color($section, $dark), 0.2);
+
+        &:hover {
+          box-shadow: 0 0 fn.spacing(xl) fn.color($section, $base);
+        }
+
+        &:checked {
+          background: linear-gradient(135deg, fn.color(grayscale, 60), fn.color($section, $base));
+          box-shadow: 0 0 fn.spacing(l) fn.color(grayscale, 60), 0 0 50px fn.color($section, $base);
+          border: 2px solid fn.color($section, $base);
+        }
+      }
+    }
+
+    button {
+      color: fn.color($section, $pale);
+      text-shadow: 0 0 fn.spacing(xs) fn.color($section, $base);
+      background: linear-gradient(135deg, fn.color(grayscale, 60), fn.color($section, $base));
+
+      &:hover {
+        box-shadow: 0 0 fn.spacing(s) fn.color(grayscale, 60),
+          0 0 fn.spacing(m) fn.color($section, $base);
+      }
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: fn.color($section, $pale);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: fn.color($section, $base);
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: fn.color($section, $dark);
+    }
+  }
 }
 
 // Inputs
@@ -70,19 +153,15 @@ input {
   &[type='email'] {
     width: 100%;
     padding: fn.spacing(s) fn.spacing(m);
-    background: fn.color(grayscale, 80);
+    background: fn.color(grayscale, 80); // TODO tema chiaro/scuro
     border: 1px solid rgba(fn.color(grayscale, white), 0.1);
     border-radius: fn.radius(d);
-    color: fn.color(grayscale, 20);
     transition: all fn.duration(fast) ease;
     box-shadow: inset 0 0 fn.spacing(xs) rgba(fn.color(grayscale, black), 0.6);
 
     &:focus,
     &:focus-visible {
       outline: none;
-      border-color: fn.color(functional, accent);
-      box-shadow: 0 0 20px fn.color(functional, accent),
-        inset 0 0 10px rgba(fn.color(functional, accent-dark), 0.4);
       transform: scale(1.02);
     }
   }
@@ -92,24 +171,18 @@ input {
     appearance: none;
     width: 22px;
     height: 22px;
-    border: 2px solid fn.color(functional, accent);
     border-radius: fn.radius(c);
-    background: fn.color(grayscale, 80);
+    background: fn.color(grayscale, 80); // TODO tema chiaro/scuro
     cursor: pointer;
     position: relative;
     transition: all fn.duration(fast) ease;
-    box-shadow: 0 0 fn.spacing(s) rgba(fn.color(functional, accent-dark), 0.2);
 
     &:hover {
-      box-shadow: 0 0 fn.spacing(xl) fn.color(functional, accent);
       transform: scale(1.1);
     }
 
     &:checked {
-      background: linear-gradient(135deg, fn.color(grayscale, 60), fn.color(functional, accent));
       border-color: transparent;
-      box-shadow: 0 0 fn.spacing(l) fn.color(grayscale, 60), 0 0 50px fn.color(functional, accent);
-      border: 2px solid fn.color(functional, accent);
       transform: scale(1.15);
 
       &::after {
@@ -133,14 +206,11 @@ input {
 button {
   width: 100%;
   padding: fn.spacing(s) 0;
-  background: linear-gradient(135deg, fn.color(grayscale, 60), fn.color(functional, accent));
   border: none;
   border-radius: fn.radius(f);
-  color: fn.color(grayscale, 20);
   cursor: pointer;
   transition: all fn.duration(fast) ease;
   text-transform: uppercase;
-  text-shadow: 0 0 fn.spacing(xs) fn.color(functional, accent);
   position: relative;
   overflow: hidden;
 
@@ -162,8 +232,6 @@ button {
 
   &:hover {
     transform: translateY(-2px) scale(1.03);
-    box-shadow: 0 0 fn.spacing(s) fn.color(grayscale, 60),
-      0 0 fn.spacing(m) fn.color(functional, accent);
 
     &::before {
       left: 100%;
