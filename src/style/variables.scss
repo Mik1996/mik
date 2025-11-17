@@ -79,12 +79,32 @@ $service-colors: (
   overlay: rgba(0 0 0 / 50%),
 );
 
+$light-colors: (
+  background: #e3e3e3,
+  surface: #f2f2f2,
+  text-light: #e5e5e5,
+  text-base: #bfbfbf,
+  text-dark: #a6a6a6,
+  border: #d9d9d9,
+);
+
+$dark-colors: (
+  background: #333333,
+  surface: #262626,
+  text-light: #404040,
+  text-base: #4d4d4d,
+  text-dark: #0d0d0d,
+  border: #333333,
+);
+
 $colors: (
   functional: $functional-colors,
   grayscale: $grayscale-colors,
   primary: $primary-colors,
   semantic: $semantic-colors,
   service: $service-colors,
+  light: $light-colors,
+  dark: $dark-colors,
 );
 
 // Spacings

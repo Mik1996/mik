@@ -12,7 +12,7 @@
     />
     @for(error of form.firstName().errors(); track $index) {
     <ul>
-      <li>{{ error.message | translate }}</li>
+      <li class="error">{{ error.message | translate }}</li>
     </ul>
     }
   </div>
@@ -29,7 +29,7 @@
     />
     @for(error of form.lastName().errors(); track $index) {
     <ul>
-      <li>{{ error.message | translate }}</li>
+      <li class="error">{{ error.message | translate }}</li>
     </ul>
     }
   </div>
@@ -46,7 +46,7 @@
     />
     @for(error of form.email().errors(); track $index) {
     <ul>
-      <li>{{ error.message | translate }}</li>
+      <li class="error">{{ error.message | translate }}</li>
     </ul>
     }
   </div>

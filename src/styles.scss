@@ -5,7 +5,7 @@
 @use 'keyframes.scss';
 @use 'sass:list';
 
-$scrollbar-thickness: 8px;
+$scrollbar-thickness: fn.spacing(min);
 
 :root {
   // font-sizes
@@ -40,18 +40,17 @@ $scrollbar-thickness: 8px;
   margin: 0;
 }
 
-html {
-  background-image: url('../src/app/assets/images/background.png');
+body {
+  width: 100%;
+  height: 100vh;
+  padding: fn.spacing(xs);
+  color: fn.color(grayscale, 50);
+  font-family: GT-America, IBM Plex Sans, system-ui, sans-serif;
+  background-image: url('../src/app/assets/images/background-default.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-}
-
-body {
-  width: 100%;
-  height: 150vh;
-  padding: fn.spacing(xs);
-  font-family: GT-America, IBM Plex Sans, system-ui, sans-serif;
+  transition: background-image fn.duration(fast) ease;
 
   &::-webkit-scrollbar {
     width: $scrollbar-thickness;
@@ -68,6 +67,130 @@ body {
   }
 }
 
+// Inputs
+input {
+  // text & email
+  &[type='text'],
+  &[type='email'] {
+    width: 100%;
+    padding: fn.spacing(s) fn.spacing(m);
+    border: 1px solid rgba(fn.color(grayscale, white), 0.1);
+    border-radius: fn.radius(d);
+    transition: all fn.duration(fast) ease;
+    box-shadow: inset 0 0 fn.spacing(xs) rgba(fn.color(grayscale, black), 0.6);
+
+    &:focus,
+    &:focus-visible {
+      outline: none;
+      transform: scale(1.02);
+    }
+  }
+
+  // Checkbox
+  &[type='checkbox'] {
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: fn.radius(c);
+    cursor: pointer;
+    position: relative;
+    transition: all fn.duration(fast) ease;
+    border: 2px solid fn.color(grayscale, 20);
+    box-shadow: 0 0 fn.spacing(s) rgba(fn.color(grayscale, 20), 0.2);
+
+    &:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 fn.spacing(xl) fn.color(grayscale, 20);
+    }
+
+    &:checked {
+      border-color: transparent;
+      transform: scale(1.15);
+      background: linear-gradient(135deg, fn.color(grayscale, 60), fn.color(grayscale, 20));
+      box-shadow: 0 0 fn.spacing(l) fn.color(grayscale, 60), 0 0 50px fn.color(grayscale, 20);
+      border: 2px solid fn.color(grayscale, 20);
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 1px;
+        left: 6px;
+        width: 5px;
+        height: 10px;
+        border: solid fn.color(grayscale, white);
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+        @include mx.animate-checkmark-pop();
+        filter: drop-shadow(0 0 6px fn.color(grayscale, white));
+      }
+    }
+  }
+}
+
+// Button
+button {
+  width: 100%;
+  padding: fn.spacing(s) 0;
+  border: none;
+  border-radius: fn.radius(f);
+  background: linear-gradient(135deg, fn.color(grayscale, 60), fn.color(grayscale, 20));
+  cursor: pointer;
+  transition: all fn.duration(fast) ease;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(fn.color(grayscale, 20), 0.3),
+      transparent
+    );
+    transition: all fn.duration(fast) ease;
+  }
+
+  &:not(:disabled) {
+    text-shadow: 0 0 fn.spacing(xs) fn.color(grayscale, 20);
+
+    &:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 0 fn.spacing(s) fn.color(grayscale, 60),
+        0 0 fn.spacing(m) fn.color(grayscale, 20);
+
+      &::before {
+        left: 100%;
+      }
+    }
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    box-shadow: none;
+    opacity: 0.7;
+  }
+}
+
+// Lists
+ul,
+ol {
+  padding-left: fn.spacing(xs);
+
+  li {
+    @include mx.animate-slide-right();
+  }
+}
+
+form {
+  transition: all fn.duration(fast) ease;
+}
+
 // Theming
 @each $theme-name, $theme-values in themes.$themes {
   $section: list.nth($theme-values, 1);
@@ -78,6 +201,7 @@ body {
 
   body.#{'' + $theme-name} {
     color: fn.color($section, $base);
+    background-image: url('../src/app/assets/images/background-#{$theme-name}.png');
 
     h1,
     h2,
@@ -115,7 +239,8 @@ body {
 
         &:checked {
           background: linear-gradient(135deg, fn.color(grayscale, 60), fn.color($section, $base));
-          box-shadow: 0 0 fn.spacing(l) fn.color(grayscale, 60), 0 0 50px fn.color($section, $base);
+          box-shadow: 0 0 fn.spacing(l) fn.color(grayscale, 60),
+            0 0 fn.spacing(l) fn.color($section, $base);
           border: 2px solid fn.color($section, $base);
         }
       }
@@ -123,10 +248,13 @@ body {
 
     button {
       color: fn.color($section, $pale);
-      text-shadow: 0 0 fn.spacing(xs) fn.color($section, $base);
       background: linear-gradient(135deg, fn.color(grayscale, 60), fn.color($section, $base));
 
-      &:hover {
+      &:not(:disabled) {
+        text-shadow: 0 0 fn.spacing(xs) fn.color($section, $base);
+      }
+
+      &:not(:disabled):hover {
         box-shadow: 0 0 fn.spacing(s) fn.color(grayscale, 60),
           0 0 fn.spacing(m) fn.color($section, $base);
       }
@@ -146,112 +274,45 @@ body {
   }
 }
 
-// Inputs
-input {
-  // text & email
-  &[type='text'],
-  &[type='email'] {
-    width: 100%;
-    padding: fn.spacing(s) fn.spacing(m);
-    background: fn.color(grayscale, 80); // TODO tema chiaro/scuro
-    border: 1px solid rgba(fn.color(grayscale, white), 0.1);
-    border-radius: fn.radius(d);
-    transition: all fn.duration(fast) ease;
-    box-shadow: inset 0 0 fn.spacing(xs) rgba(fn.color(grayscale, black), 0.6);
+// Moding
+@each $mode-name, $mode-values in themes.$modes {
+  $background: list.nth($mode-values, 1);
+  $surface: list.nth($mode-values, 2);
+  $text-light: list.nth($mode-values, 3);
+  $text-base: list.nth($mode-values, 4);
+  $text-dark: list.nth($mode-values, 5);
+  $border: list.nth($mode-values, 6);
 
-    &:focus,
-    &:focus-visible {
-      outline: none;
-      transform: scale(1.02);
-    }
-  }
-
-  // Checkbox
-  &[type='checkbox'] {
-    appearance: none;
-    width: 22px;
-    height: 22px;
-    border-radius: fn.radius(c);
-    background: fn.color(grayscale, 80); // TODO tema chiaro/scuro
-    cursor: pointer;
-    position: relative;
-    transition: all fn.duration(fast) ease;
-
-    &:hover {
-      transform: scale(1.1);
+  body.#{'' + $mode-name} {
+    input {
+      background: fn.color($mode-name, $background);
     }
 
-    &:checked {
-      border-color: transparent;
-      transform: scale(1.15);
-
-      &::after {
-        content: '';
-        position: absolute;
-        top: 1px;
-        left: 6px;
-        width: 5px;
-        height: 10px;
-        border: solid fn.color(grayscale, white);
-        border-width: 0 2px 2px 0;
-        transform: rotate(45deg);
-        @include mx.animate-checkmark-pop();
-        filter: drop-shadow(0 0 6px fn.color(grayscale, white));
+    button {
+      &:before {
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(fn.color($mode-name, $background), 0.3),
+          transparent
+        );
       }
     }
-  }
-}
 
-// Button
-button {
-  width: 100%;
-  padding: fn.spacing(s) 0;
-  border: none;
-  border-radius: fn.radius(f);
-  cursor: pointer;
-  transition: all fn.duration(fast) ease;
-  text-transform: uppercase;
-  position: relative;
-  overflow: hidden;
-
-  &:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(fn.color(grayscale, white), 0.3),
-      transparent
-    );
-    transition: all fn.duration(fast) ease;
-  }
-
-  &:hover {
-    transform: translateY(-2px) scale(1.03);
-
-    &::before {
-      left: 100%;
+    form {
+      background: fn.color($mode-name, $background);
+      border: 1px solid rgba(fn.color($mode-name, $border), 0.1);
     }
   }
-
-  &:disabled {
-    background: rgba(fn.color(grayscale, white), 0.1);
-    color: rgba(fn.color(grayscale, white), 0.3);
-    cursor: not-allowed;
-    box-shadow: none;
-  }
 }
 
-// Lists
-ul,
-ol {
-  padding-left: fn.spacing(xs);
+// EXTRA: Utility classes
+.error {
+  color: fn.color(semantic, error);
+  text-shadow: 0 0 fn.spacing(s) fn.color(semantic, error);
+}
 
-  li {
-    @include mx.animate-slide-right();
-  }
+.warning {
+  color: fn.color(semantic, warning);
+  text-shadow: 0 0 fn.spacing(s) fn.color(semantic, warning);
 }

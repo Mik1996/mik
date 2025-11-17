@@ -4,6 +4,7 @@
     ],
     "conventionalCommits.scopes": [
         "Dynamic-font-size",
-        "theme"
+        "theme",
+        "mode"
     ]
 }

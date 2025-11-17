@@ -8,8 +8,6 @@ form {
   margin: fn.spacing(max) auto;
   padding: fn.spacing(m);
   border-radius: fn.radius(f);
-  background: fn.color(grayscale, 60);
-  border: 1px solid rgba(fn.color(grayscale, white), 0.1);
   position: relative;
   overflow: hidden;
   @include mx.animate-fade-in(fn.duration(fast), ease, forwards);
@@ -36,8 +34,6 @@ form {
     }
 
     li {
-      color: fn.color(semantic, error);
-      text-shadow: 0 0 fn.spacing(s) fn.color(semantic, error);
       list-style: none;
     }
   }
