@@ -1,4 +1,4 @@
-@use "mixins.scss" as mx;
+@use 'mixins.scss' as mx;
 
 h1 {
   @include mx.fluid-type(5);
@@ -34,7 +34,9 @@ label {
 
 p,
 li,
-span {
+span,
+input,
+select {
   @include mx.fluid-type(0);
 }
 

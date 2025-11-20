@@ -1,8 +1,8 @@
 import { DOCUMENT } from '@angular/common';
 import { effect, inject, Injectable, signal } from '@angular/core';
-import { LocalStorageKey, MODES, THEMES } from '../shared/constants';
-import { ThemeNameType } from '../models/theme-name.type';
 import { ModeNameType } from '../models/mode-name.type';
+import { ThemeNameType } from '../models/theme-name.type';
+import { DEFAULT_MODE, DEFAULT_THEME, LocalStorageKey, MODES, THEMES } from '../shared/constants';
 
 @Injectable({
   providedIn: 'root',
@@ -10,12 +10,12 @@ import { ModeNameType } from '../models/mode-name.type';
 export class ThemeService {
   private readonly document = inject(DOCUMENT);
 
-  private readonly selectedTheme = signal<ThemeNameType>(
-    THEMES.find((theme) => localStorage.getItem(LocalStorageKey.THEME) === theme) ?? 'default'
+  readonly selectedTheme = signal<ThemeNameType>(
+    THEMES.find((theme) => localStorage.getItem(LocalStorageKey.THEME) === theme) ?? DEFAULT_THEME
   );
 
-  private readonly selectedMode = signal<ModeNameType>(
-    MODES.find((mode) => localStorage.getItem(LocalStorageKey.MODE) === mode) ?? 'light'
+  readonly selectedMode = signal<ModeNameType>(
+    MODES.find((mode) => localStorage.getItem(LocalStorageKey.MODE) === mode) ?? DEFAULT_MODE
   );
 
   constructor() {
@@ -23,26 +23,24 @@ export class ThemeService {
       const theme = this.selectedTheme();
       this.document.documentElement.classList.add(theme);
       localStorage.setItem(LocalStorageKey.THEME, theme);
-      console.log('Selected theme:', theme);
     });
 
     effect(() => {
       const mode = this.selectedMode();
       this.document.documentElement.classList.add(mode);
       localStorage.setItem(LocalStorageKey.MODE, mode);
-      console.log('Selected mode:', mode);
     });
   }
 
   setTheme = (themeName: ThemeNameType) => {
     if (this.selectedTheme() === themeName) return;
-    this.document.documentElement.classList.remove(themeName);
+    this.document.documentElement.classList.remove(this.selectedTheme());
     this.selectedTheme.set(themeName);
   };
 
   setMode = (modeName: ModeNameType) => {
     if (this.selectedMode() === modeName) return;
-    this.document.documentElement.classList.remove(modeName);
+    this.document.documentElement.classList.remove(this.selectedMode());
     this.selectedMode.set(modeName);
   };
 }

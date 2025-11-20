@@ -6,5 +6,6 @@
         "Dynamic-font-size",
         "theme",
         "mode"
-    ]
+    ],
+    "i18n-ally.keystyle": "nested"
 }

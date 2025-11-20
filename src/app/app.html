@@ -1,2 +1,40 @@
 <router-outlet />
 <mik-form></mik-form>
+
+<form class="form">
+  <div class="form-field-wrapper">
+    <label for="language-select">{{ 'LANGUAGE' | translate }}</label>
+    <select id="language-select" [field]="form.language">
+      <option [value]="null" disabled selected hidden>
+        {{ 'PLACEHOLDER' | translate }}
+      </option>
+      @for (language of languages(); track $index) {
+        <option [value]="language">{{ language }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="form-field-wrapper">
+    <label for="theme-select">{{ 'THEME' | translate }}</label>
+    <select id="theme-select" [field]="form.theme">
+      <option [value]="null" disabled selected hidden>
+        {{ 'PLACEHOLDER' | translate }}
+      </option>
+      @for (theme of themes(); track $index) {
+        <option [value]="theme">{{ theme }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="form-field-wrapper">
+    <label for="theme-select">{{ 'MODE' | translate }}</label>
+    <select id="mode-select" [field]="form.mode">
+      <option [value]="null" disabled selected hidden>
+        {{ 'PLACEHOLDER' | translate }}
+      </option>
+      @for (mode of modes(); track $index) {
+        <option [value]="mode">{{ mode }}</option>
+      }
+    </select>
+  </div>
+</form>

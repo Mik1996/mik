@@ -10,10 +10,10 @@
       [placeholder]="'FIRST_NAME_PLACEHOLDER' | translate"
       [field]="form.firstName"
     />
-    @for(error of form.firstName().errors(); track $index) {
-    <ul>
-      <li class="error">{{ error.message | translate }}</li>
-    </ul>
+    @for (error of form.firstName().errors(); track $index) {
+      <ul>
+        <li class="error">{{ error.message | translate }}</li>
+      </ul>
     }
   </div>
 
@@ -27,10 +27,10 @@
       [placeholder]="'LAST_NAME_PLACEHOLDER' | translate"
       [field]="form.lastName"
     />
-    @for(error of form.lastName().errors(); track $index) {
-    <ul>
-      <li class="error">{{ error.message | translate }}</li>
-    </ul>
+    @for (error of form.lastName().errors(); track $index) {
+      <ul>
+        <li class="error">{{ error.message | translate }}</li>
+      </ul>
     }
   </div>
 
@@ -44,23 +44,20 @@
       [placeholder]="'EMAIL_PLACEHOLDER' | translate"
       [field]="form.email"
     />
-    @for(error of form.email().errors(); track $index) {
-    <ul>
-      <li class="error">{{ error.message | translate }}</li>
-    </ul>
+    @for (error of form.email().errors(); track $index) {
+      <ul>
+        <li class="error">{{ error.message | translate }}</li>
+      </ul>
     }
   </div>
 
   <!-- NOTIFY BY EMAIL -->
   <div class="form-field-wrapper">
     <label for="notifyByEmail">{{ 'NOTIFY_BY_EMAIL' | translate }}</label>
-    <input
-      class="form-field"
-      id="notifyByEmail"
-      type="checkbox"
-      [field]="form.notifyByEmail"
-    />
+    <input class="form-field" id="notifyByEmail" type="checkbox" [field]="form.notifyByEmail" />
   </div>
 
-  <button type="submit" [disabled]="form().submitting() || form().invalid()">{{ 'SUBMIT' | translate }}</button>
+  <button type="submit" [disabled]="form().submitting() || form().invalid()">
+    {{ 'SUBMIT' | translate }}
+  </button>
 </form>

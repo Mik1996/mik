@@ -24,7 +24,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient(withFetch()),
     provideTranslateService({
-      defaultLanguage: 'it',
       fallbackLang: 'it',
       loader: provideTranslateHttpLoader({
         prefix: './i18n/',

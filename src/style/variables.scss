@@ -4,12 +4,23 @@ $app-prefix: mik;
 $base-unit: 1rem;
 
 $breakpoints: (
-  mobile-sm: 360px, // es. iPhone SE, Galaxy S Mini
-  mobile-md: 480px, // es. iPhone 13 Mini, Pixel 4a
-  mobile-lg: 600px, // telefoni grandi o piccoli tablet in portrait
-  tablet-sm: 768px, // es. iPad Mini, Galaxy Tab
-  tablet-md: 992px, // es. iPad Air, tablet landscape
-  tablet-lg: 1200px, // es. iPad Pro, piccoli laptop
+  // es. iPhone SE, Galaxy S Mini
+  mobile-sm: 360px,
+
+  // es. iPhone 13 Mini, Pixel 4a
+  mobile-md: 480px,
+
+  // telefoni grandi o piccoli tablet in portrait
+  mobile-lg: 600px,
+
+  // es. iPad Mini, Galaxy Tab
+  tablet-sm: 768px,
+
+  // es. iPad Air, tablet landscape
+  tablet-md: 992px,
+
+  // es. iPad Pro, piccoli laptop
+  tablet-lg: 1200px
 );
 
 // Colors
@@ -82,18 +93,18 @@ $service-colors: (
 $light-colors: (
   background: #e3e3e3,
   surface: #f2f2f2,
-  text-light: #e5e5e5,
-  text-base: #bfbfbf,
-  text-dark: #a6a6a6,
+  text-light: #404040,
+  text-base: #4d4d4d,
+  text-dark: #0d0d0d,
   border: #d9d9d9,
 );
 
 $dark-colors: (
   background: #333333,
   surface: #262626,
-  text-light: #404040,
-  text-base: #4d4d4d,
-  text-dark: #0d0d0d,
+  text-light: #e5e5e5,
+  text-base: #bfbfbf,
+  text-dark: #a6a6a6,
   border: #333333,
 );
 
@@ -109,14 +120,26 @@ $colors: (
 
 // Spacings
 $spacing: (
-  min: var(--space-1),
-  xs: var(--space-2),
-  s: var(--space-3),
-  m: var(--space-4),
-  l: var(--space-5),
-  xl: var(--space-6),
-  ul: var(--space-7),
-  max: var(--space-8),
+
+  // Variabili responsive
+  // min: var(--space-1),
+  // xs: var(--space-2),
+  // s: var(--space-3),
+  // m: var(--space-4),
+  // l: var(--space-5),
+  // xl: var(--space-6),
+  // ul: var(--space-7),
+  // max: var(--space-8),
+
+  // Variabili statiche
+  min: 0.125 * $base-unit,
+  xs: 0.25 * $base-unit,
+  s: 0.5 * $base-unit,
+  m: 0.75 * $base-unit,
+  l: 1 * $base-unit,
+  xl: 1.25 * $base-unit,
+  ul: 1.75 * $base-unit,
+  max: 2 * $base-unit,
 );
 
 // Font sizes
@@ -144,14 +167,10 @@ $radius: (
 // Elevations
 $elevation-color: var(--#{$app-prefix}-primary-light-color, map.get($primary-colors, light));
 $elevations: (
-  0 ($base-unit * 0.125) ($base-unit * 0.25) 0
-    color-mix(in srgb, var(--#{$app-prefix}-elevation-color), transparent 84%),
-  0 ($base-unit * 0.25) ($base-unit * 0.5) 0
-    color-mix(in srgb, var(--#{$app-prefix}-elevation-color), transparent 84%),
-  0 ($base-unit * 0.375) ($base-unit * 0.75) 0
-    color-mix(in srgb, var(--#{$app-prefix}-elevation-color), transparent 76%),
-  0 ($base-unit * 0.5) ($base-unit * 1.5) 0
-    color-mix(in srgb, var(--#{$app-prefix}-elevation-color), transparent 68%)
+  0 ($base-unit * 0.125) ($base-unit * 0.25) 0 color-mix(in srgb, var(--#{$app-prefix}-elevation-color), transparent 84%),
+  0 ($base-unit * 0.25) ($base-unit * 0.5) 0 color-mix(in srgb, var(--#{$app-prefix}-elevation-color), transparent 84%),
+  0 ($base-unit * 0.375) ($base-unit * 0.75) 0 color-mix(in srgb, var(--#{$app-prefix}-elevation-color), transparent 76%),
+  0 ($base-unit * 0.5) ($base-unit * 1.5) 0 color-mix(in srgb, var(--#{$app-prefix}-elevation-color), transparent 68%)
 );
 
 // Durations

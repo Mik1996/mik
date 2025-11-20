@@ -1,7 +1,7 @@
-@use "sass:string";
-@use "sass:map";
-@use "functions.scss" as fn;
-@use "variables.scss" as vars;
+@use 'sass:string';
+@use 'sass:map';
+@use 'functions.scss' as fn;
+@use 'variables.scss' as vars;
 
 /*
  * Utilizzare "$important: true" SOLO nei casi in cui non si ha controllo del codice di terze parti
@@ -26,7 +26,14 @@
 }
 
 /* Animation mixins using keyframes */
-@mixin animate($name, $duration: fn.duration(fast), $timing: ease, $fill: both, $delay: 0s, $iteration: 1) {
+@mixin animate(
+  $name,
+  $duration: fn.duration(fast),
+  $timing: ease,
+  $fill: both,
+  $delay: 0s,
+  $iteration: 1
+) {
   animation: #{$name} $duration $timing $delay $iteration $fill;
 }
 

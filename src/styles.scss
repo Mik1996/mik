@@ -46,7 +46,11 @@ body {
   height: 100vh;
   padding: fn.spacing(xs);
   color: fn.color(grayscale, 50);
-  font-family: GT-America, IBM Plex Sans, system-ui, sans-serif;
+  font-family:
+    GT-America,
+    IBM Plex Sans,
+    system-ui,
+    sans-serif;
   background-image: url('../src/app/assets/images/background-default.png');
   background-repeat: no-repeat;
   background-size: cover;
@@ -69,61 +73,66 @@ body {
 }
 
 // Inputs
-input {
-  // text & email
-  &[type='text'],
-  &[type='email'] {
-    width: 100%;
-    padding: fn.spacing(s) fn.spacing(m);
-    border: 1px solid rgba(fn.color(grayscale, white), 0.1);
-    border-radius: fn.radius(d);
-    transition: all fn.duration(fast) ease;
-    box-shadow: inset 0 0 fn.spacing(xs) rgba(fn.color(grayscale, black), 0.6);
+input[type='text'],
+input[type='email'],
+select {
+  width: 100%;
+  height: min-content;
+  padding: fn.spacing(m) fn.spacing(l);
+  border: 1px solid rgba(fn.color(grayscale, white), 0.1);
+  border-radius: fn.radius(d);
+  transition: all fn.duration(fast) ease;
+  box-shadow: inset 0 0 fn.spacing(xs) rgba(fn.color(grayscale, black), 0.6);
 
-    &:focus,
-    &:focus-visible {
-      outline: none;
-      transform: scale(1.02);
-    }
+  &:focus,
+  &:focus-visible {
+    outline: none;
+    transform: scale(1.02);
+  }
+}
+
+select {
+  text-transform: capitalize;
+}
+
+// Checkbox
+input[type='checkbox'] {
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: fn.radius(c);
+  cursor: pointer;
+  position: relative;
+  transition: all fn.duration(fast) ease;
+  border: 2px solid fn.color(grayscale, 20);
+  box-shadow: 0 0 fn.spacing(s) rgba(fn.color(grayscale, 20), 0.2);
+
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 fn.spacing(xl) fn.color(grayscale, 20);
   }
 
-  // Checkbox
-  &[type='checkbox'] {
-    appearance: none;
-    width: 22px;
-    height: 22px;
-    border-radius: fn.radius(c);
-    cursor: pointer;
-    position: relative;
-    transition: all fn.duration(fast) ease;
+  &:checked {
+    border-color: transparent;
+    transform: scale(1.15);
+    background: linear-gradient(135deg, fn.color(grayscale, 60), fn.color(grayscale, 20));
+    box-shadow:
+      0 0 fn.spacing(l) fn.color(grayscale, 60),
+      0 0 50px fn.color(grayscale, 20);
     border: 2px solid fn.color(grayscale, 20);
-    box-shadow: 0 0 fn.spacing(s) rgba(fn.color(grayscale, 20), 0.2);
 
-    &:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 fn.spacing(xl) fn.color(grayscale, 20);
-    }
-
-    &:checked {
-      border-color: transparent;
-      transform: scale(1.15);
-      background: linear-gradient(135deg, fn.color(grayscale, 60), fn.color(grayscale, 20));
-      box-shadow: 0 0 fn.spacing(l) fn.color(grayscale, 60), 0 0 50px fn.color(grayscale, 20);
-      border: 2px solid fn.color(grayscale, 20);
-
-      &::after {
-        content: '';
-        position: absolute;
-        top: 1px;
-        left: 6px;
-        width: 5px;
-        height: 10px;
-        border: solid fn.color(grayscale, white);
-        border-width: 0 2px 2px 0;
-        transform: rotate(45deg);
-        @include mx.animate-checkmark-pop();
-        filter: drop-shadow(0 0 6px fn.color(grayscale, white));
-      }
+    &::after {
+      content: '';
+      position: absolute;
+      top: 1px;
+      left: 6px;
+      width: 5px;
+      height: 10px;
+      border: solid fn.color(grayscale, white);
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+      @include mx.animate-checkmark-pop();
+      filter: drop-shadow(0 0 6px fn.color(grayscale, white));
     }
   }
 }
@@ -148,12 +157,7 @@ button {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(fn.color(grayscale, 20), 0.3),
-      transparent
-    );
+    background: linear-gradient(90deg, transparent, rgba(fn.color(grayscale, 20), 0.3), transparent);
     transition: all fn.duration(fast) ease;
   }
 
@@ -162,7 +166,8 @@ button {
 
     &:hover {
       transform: translateY(-2px) scale(1.03);
-      box-shadow: 0 0 fn.spacing(s) fn.color(grayscale, 60),
+      box-shadow:
+        0 0 fn.spacing(s) fn.color(grayscale, 60),
         0 0 fn.spacing(m) fn.color(grayscale, 20);
 
       &::before {
@@ -217,36 +222,37 @@ form {
       span,
       pre,
       label {
-        text-shadow: 0 0 10px fn.color($section, $base), 0 0 0 fn.color($section, $base);
+        text-shadow:
+          0 0 10px fn.color($section, $base),
+          0 0 0 fn.color($section, $base);
       }
 
-      input {
-        // text & email
-        &[type='text'],
-        &[type='email'] {
-          color: fn.color($section, $pale);
-
-          &:focus,
-          &:focus-visible {
-            border-color: fn.color($section, $base);
-            box-shadow: 0 0 20px fn.color($section, $base),
-              inset 0 0 10px rgba(fn.color($section, $dark), 0.4);
-          }
+      select,
+      input[type='text'],
+      input[type='email'] {
+        &:focus,
+        &:focus-visible {
+          border-color: fn.color($section, $base);
+          box-shadow:
+            0 0 20px fn.color($section, $base),
+            inset 0 0 10px rgba(fn.color($section, $dark), 0.4);
         }
-        &[type='checkbox'] {
+      }
+
+      input[type='checkbox'] {
+        border: 2px solid fn.color($section, $base);
+        box-shadow: 0 0 fn.spacing(s) rgba(fn.color($section, $dark), 0.2);
+
+        &:hover {
+          box-shadow: 0 0 fn.spacing(xl) fn.color($section, $base);
+        }
+
+        &:checked {
+          background: linear-gradient(135deg, fn.color(grayscale, 60), fn.color($section, $base));
+          box-shadow:
+            0 0 fn.spacing(l) fn.color(grayscale, 60),
+            0 0 fn.spacing(l) fn.color($section, $base);
           border: 2px solid fn.color($section, $base);
-          box-shadow: 0 0 fn.spacing(s) rgba(fn.color($section, $dark), 0.2);
-
-          &:hover {
-            box-shadow: 0 0 fn.spacing(xl) fn.color($section, $base);
-          }
-
-          &:checked {
-            background: linear-gradient(135deg, fn.color(grayscale, 60), fn.color($section, $base));
-            box-shadow: 0 0 fn.spacing(l) fn.color(grayscale, 60),
-              0 0 fn.spacing(l) fn.color($section, $base);
-            border: 2px solid fn.color($section, $base);
-          }
         }
       }
 
@@ -259,7 +265,8 @@ form {
         }
 
         &:not(:disabled):hover {
-          box-shadow: 0 0 fn.spacing(s) fn.color(grayscale, 60),
+          box-shadow:
+            0 0 fn.spacing(s) fn.color(grayscale, 60),
             0 0 fn.spacing(m) fn.color($section, $base);
         }
       }
@@ -288,19 +295,16 @@ form {
   $text-dark: list.nth($mode-values, 5);
   $border: list.nth($mode-values, 6);
 
-  body.#{'' + $mode-name} {
-    input {
+  html.#{'' + $mode-name} {
+    input,
+    select {
+      color: fn.color($mode-name, $text-base);
       background: fn.color($mode-name, $background);
     }
 
     button {
       &:before {
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(fn.color($mode-name, $background), 0.3),
-          transparent
-        );
+        background: linear-gradient(90deg, transparent, rgba(fn.color($mode-name, $background), 0.3), transparent);
       }
     }
 
@@ -320,4 +324,27 @@ form {
 .warning {
   color: fn.color(semantic, warning);
   text-shadow: 0 0 fn.spacing(s) fn.color(semantic, warning);
+}
+
+.form-field-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: fn.spacing(xs);
+
+  label {
+    padding-left: fn.spacing(xs);
+    text-transform: uppercase;
+  }
+
+  &:has(input[type='checkbox']) {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  li {
+    list-style: none;
+  }
 }

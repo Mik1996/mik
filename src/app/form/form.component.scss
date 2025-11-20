@@ -3,40 +3,17 @@
 
 form {
   container-type: inline-size;
-  min-width: 350px;
+  min-width: 300px;
   max-width: 50vw;
   margin: fn.spacing(max) auto;
-  padding: fn.spacing(m);
+  padding: fn.spacing(l);
   border-radius: fn.radius(f);
   position: relative;
   overflow: hidden;
   @include mx.animate-fade-in(fn.duration(fast), ease, forwards);
   display: flex;
   flex-direction: column;
-  gap: fn.spacing(s);
-
-  .form-field-wrapper {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: fn.spacing(min);
-
-    label {
-      padding-left: fn.spacing(min);
-      text-transform: uppercase;
-    }
-
-    &:has(input[type='checkbox']) {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-end;
-      align-items: center;
-    }
-
-    li {
-      list-style: none;
-    }
-  }
+  gap: fn.spacing(m);
 }
 
 @include mx.has-min-width('tablet-lg') {

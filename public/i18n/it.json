@@ -10,5 +10,9 @@
   "SUBMIT": "Conferma",
   "REQUIRED_FIELD": "Il campo è obbligatorio!",
   "MINLENGHT_3_FIELD": "Questo campo deve avere almeno 3 caratteri!",
-  "EMAIL_FIELD": "Inserire email valida!"
+  "EMAIL_FIELD": "Inserire email valida!",
+  "PLACEHOLDER": "Seleziona...",
+  "THEME": "Tema",
+  "MODE": "Modalità",
+  "LANGUAGE": "Lingua"
 }

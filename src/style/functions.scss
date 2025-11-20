@@ -1,6 +1,6 @@
-@use "sass:list";
-@use "sass:map";
-@use "variables.scss" as vars;
+@use 'sass:list';
+@use 'sass:map';
+@use 'variables.scss' as vars;
 
 @function prop-var-name($name) {
   @return --#{vars.$app-prefix}-#{$name};
@@ -11,7 +11,11 @@
 }
 
 @function units($amount: 1) {
-  @return if($amount == 1, #{prop-var(base-unit, vars.$base-unit)}, calc(#{prop-var(base-unit, vars.$base-unit)} * #{$amount}));
+  @return if(
+    $amount == 1,
+    #{prop-var(base-unit, vars.$base-unit)},
+    calc(#{prop-var(base-unit, vars.$base-unit)} * #{$amount})
+  );
 }
 
 // Colors
@@ -27,7 +31,6 @@
   @return var(#{color-var-name($section, $name)}, #{color($section, $name)});
 }
 
-
 // Spacings
 @function spacing($size: m) {
   @return map.get(vars.$spacing, $size);
@@ -40,7 +43,6 @@
 @function spacing-var($size: m) {
   @return var(spacing-var-name($size), spacing($size));
 }
-
 
 // Radius
 @function radius($size: b) {
@@ -67,7 +69,6 @@
 @function font-size-var($name) {
   @return var(font-size-var-name($name), font-size($name));
 }
-
 
 // Elevations
 @function elevation($level) {

@@ -10,5 +10,9 @@
   "SUBMIT": "Submit",
   "REQUIRED_FIELD": "This field is required!",
   "MINLENGHT_3_FIELD": "This field must have at least 3 character!",
-  "EMAIL_FIELD": "Insert a valid email!"
+  "EMAIL_FIELD": "Insert a valid email!",
+  "PLACEHOLDER": "Select...",
+  "THEME": "Theme",
+  "MODE": "Mode",
+  "LANGUAGE": "Language"
 }
