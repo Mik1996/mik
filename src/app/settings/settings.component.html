@@ -1,7 +1,8 @@
-<form class="form">
+<form>
+  <!-- LANGUAGE -->
   <div class="form-field-wrapper">
-    <label for="language-select">{{ 'LANGUAGE' | translate }}</label>
-    <select id="language-select" [field]="form.language">
+    <label for="language">{{ 'LANGUAGE' | translate }}</label>
+    <select id="language" [field]="form.language">
       <option [value]="null" disabled selected hidden>
         {{ 'PLACEHOLDER' | translate }}
       </option>
@@ -11,9 +12,10 @@
     </select>
   </div>
 
+  <!-- THEME -->
   <div class="form-field-wrapper">
-    <label for="theme-select">{{ 'THEME' | translate }}</label>
-    <select id="theme-select" [field]="form.theme">
+    <label for="theme">{{ 'THEME' | translate }}</label>
+    <select id="theme" [field]="form.theme">
       <option [value]="null" disabled selected hidden>
         {{ 'PLACEHOLDER' | translate }}
       </option>
@@ -23,9 +25,10 @@
     </select>
   </div>
 
+  <!-- MODE -->
   <div class="form-field-wrapper">
-    <label for="theme-select">{{ 'MODE' | translate }}</label>
-    <select id="mode-select" [field]="form.mode">
+    <label for="mode">{{ 'MODE' | translate }}</label>
+    <select id="mode" [field]="form.mode">
       <option [value]="null" disabled selected hidden>
         {{ 'PLACEHOLDER' | translate }}
       </option>
