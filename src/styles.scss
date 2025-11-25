@@ -6,7 +6,7 @@
 @use 'keyframes.scss';
 @use 'sass:list';
 
-$scrollbar-thickness: fn.spacing(min);
+$scrollbar-thickness: fn.spacing(xs);
 
 :root {
   // font-sizes
@@ -214,6 +214,9 @@ ol {
 }
 
 form {
+  padding: fn.spacing(l);
+  overflow: hidden;
+  border-radius: fn.radius(f);
   transition: all fn.duration(fast) ease;
 }
 
@@ -291,10 +294,6 @@ form {
         }
       }
 
-      &::-webkit-scrollbar-track {
-        background-color: fn.color($section, $pale);
-      }
-
       &::-webkit-scrollbar-thumb {
         background-color: fn.color($section, $base);
       }
@@ -318,6 +317,15 @@ form {
   html.#{'' + $mode-name} {
     &::before {
       background-color: fn.color($mode-name, $surface);
+    }
+
+    body {
+      &::-webkit-scrollbar-track {
+        background-color: fn.color($mode-name, $surface);
+      }
+      &::-webkit-scrollbar-track:horizontal {
+        background-color: fn.color($mode-name, $surface);
+      }
     }
 
     input,

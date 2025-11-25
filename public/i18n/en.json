@@ -20,5 +20,7 @@
   "PLACEHOLDER": "Select...",
   "THEME": "Theme",
   "MODE": "Mode",
-  "LANGUAGE": "Language"
+  "LANGUAGE": "Language",
+  "ITALIAN": "Italian",
+  "ENGLISH": "English"
 }

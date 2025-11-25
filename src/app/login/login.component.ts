@@ -10,14 +10,14 @@ import { nameSchema, passwordSchema } from '../shared/schemas';
 const initalForm: User = { firstName: '', lastName: '', email: '', password: '', repeatPassword: '', notifyByEmail: false };
 
 @Component({
-  selector: 'mik-form',
+  selector: 'mik-login',
   imports: [Field, TranslatePipe],
-  templateUrl: './form.component.html',
-  styleUrl: './form.component.scss',
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.scss',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FormComponent {
+export class LoginComponent {
   protected readonly data = signal<User>(initalForm);
   protected readonly form = form<User>(this.data, (path) => {
     // First name validators

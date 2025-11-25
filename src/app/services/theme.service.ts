@@ -11,11 +11,11 @@ export class ThemeService {
   private readonly document = inject(DOCUMENT);
 
   readonly selectedTheme = signal<ThemeNameType>(
-    THEMES.find((theme) => localStorage.getItem(LocalStorageKey.THEME) === theme) ?? DEFAULT_THEME
+    THEMES.find(({ id }) => localStorage.getItem(LocalStorageKey.THEME) === id)?.id ?? DEFAULT_THEME.id
   );
 
   readonly selectedMode = signal<ModeNameType>(
-    MODES.find((mode) => localStorage.getItem(LocalStorageKey.MODE) === mode) ?? DEFAULT_MODE
+    MODES.find(({ id }) => localStorage.getItem(LocalStorageKey.MODE) === id)?.id ?? DEFAULT_MODE.id
   );
 
   constructor() {

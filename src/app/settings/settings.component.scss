@@ -1,0 +1,13 @@
+@use 'functions.scss' as fn;
+
+.form {
+  margin: 0 auto;
+  width: min-content;
+  display: flex;
+  gap: fn.spacing(s);
+  justify-content: center;
+
+  select {
+    min-width: 120px;
+  }
+}

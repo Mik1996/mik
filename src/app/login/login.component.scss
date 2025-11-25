@@ -6,10 +6,7 @@ form {
   min-width: 300px;
   max-width: 50vw;
   margin: fn.spacing(max) auto;
-  padding: fn.spacing(l);
-  border-radius: fn.radius(f);
-  position: relative;
-  overflow: hidden;
+
   @include mx.animate-fade-in(fn.duration(fast), ease, forwards);
   display: flex;
   flex-direction: column;
