@@ -75,6 +75,7 @@ body {
 // Inputs
 input[type='text'],
 input[type='email'],
+input[type='password'],
 select {
   width: 100%;
   height: min-content;
@@ -229,7 +230,8 @@ form {
 
       select,
       input[type='text'],
-      input[type='email'] {
+      input[type='email'],
+      input[type='password'] {
         &:focus,
         &:focus-visible {
           border-color: fn.color($section, $base);
@@ -309,8 +311,7 @@ form {
     }
 
     form {
-      background: fn.color($mode-name, $background);
-      border: 1px solid rgba(fn.color($mode-name, $border), 0.1);
+      background-color: fn.color($mode-name, $background);
     }
   }
 }

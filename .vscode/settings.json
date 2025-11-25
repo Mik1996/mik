@@ -5,7 +5,8 @@
     "conventionalCommits.scopes": [
         "Dynamic-font-size",
         "theme",
-        "mode"
+        "mode",
+        "form"
     ],
     "i18n-ally.keystyle": "nested"
 }
