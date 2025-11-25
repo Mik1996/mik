@@ -1,0 +1,20 @@
+@use 'functions.scss' as fn;
+@use 'mixins.scss' as mx;
+
+form {
+  container-type: inline-size;
+  min-width: 300px;
+  max-width: 50vw;
+  margin: fn.spacing(max) auto;
+
+  @include mx.animate-fade-in(fn.duration(fast), ease, forwards);
+  display: flex;
+  flex-direction: column;
+  gap: fn.spacing(m);
+}
+
+@include mx.has-min-width('tablet-lg') {
+  form {
+    max-width: 30vw;
+  }
+}

@@ -6,9 +6,21 @@
   "LAST_NAME_PLACEHOLDER": "Enter your last name",
   "EMAIL": "Email",
   "EMAIL_PLACEHOLDER": "Enter your email",
+  "PASSWORD": "Password",
+  "PASSWORD_PLACEHOLDER": "Choose a password",
+  "REPEAT_PASSWORD": "Repeat password",
+  "REPEAT_PASSWORD_PLACEHOLDER": "Repeat password",
+  "WEAK_PASSWORD": "The password must be at least 8 characters long, contain an uppercase letter, a lowercase letter, a number, a special character and no whitespaces.",
+  "DIFFERENT_PASSWORD": "Passwords do not match",
   "NOTIFY_BY_EMAIL": "Notify by email",
   "SUBMIT": "Submit",
   "REQUIRED_FIELD": "This field is required!",
   "MINLENGHT_3_FIELD": "This field must have at least 3 character!",
-  "EMAIL_FIELD": "Insert a valid email!"
+  "EMAIL_FIELD": "Insert a valid email!",
+  "PLACEHOLDER": "Select...",
+  "THEME": "Theme",
+  "MODE": "Mode",
+  "LANGUAGE": "Language",
+  "ITALIAN": "Italian",
+  "ENGLISH": "English"
 }

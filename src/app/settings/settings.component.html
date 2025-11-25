@@ -1,0 +1,40 @@
+<form>
+  <!-- LANGUAGE -->
+  <div class="form-field-wrapper">
+    <label for="language">{{ 'LANGUAGE' | translate }}</label>
+    <select id="language" [field]="form.language">
+      <option [value]="null" disabled selected hidden>
+        {{ 'PLACEHOLDER' | translate }}
+      </option>
+      @for (language of languages(); track $index) {
+        <option [value]="language.id">{{ language.description | uppercase | translate }}</option>
+      }
+    </select>
+  </div>
+
+  <!-- THEME -->
+  <div class="form-field-wrapper">
+    <label for="theme">{{ 'THEME' | translate }}</label>
+    <select id="theme" [field]="form.theme">
+      <option [value]="null" disabled selected hidden>
+        {{ 'PLACEHOLDER' | translate }}
+      </option>
+      @for (theme of themes(); track $index) {
+        <option [value]="theme.id">{{ theme.description }}</option>
+      }
+    </select>
+  </div>
+
+  <!-- MODE -->
+  <div class="form-field-wrapper">
+    <label for="mode">{{ 'MODE' | translate }}</label>
+    <select id="mode" [field]="form.mode">
+      <option [value]="null" disabled selected hidden>
+        {{ 'PLACEHOLDER' | translate }}
+      </option>
+      @for (mode of modes(); track $index) {
+        <option [value]="mode.id">{{ mode.description }}</option>
+      }
+    </select>
+  </div>
+</form>

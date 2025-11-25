@@ -1,4 +1,4 @@
-@use "mixins.scss" as mx;
+@use 'mixins.scss' as mx;
 
 h1 {
   @include mx.fluid-type(5);
@@ -20,21 +20,23 @@ h4 {
   font-weight: 600;
 }
 
-h5 {
+h5,
+button {
   @include mx.fluid-type(1);
   font-weight: 500;
 }
 
 h6,
-label,
-button {
+label {
   @include mx.fluid-type(0);
   font-weight: 500;
 }
 
 p,
 li,
-span {
+span,
+input,
+select {
   @include mx.fluid-type(0);
 }
 

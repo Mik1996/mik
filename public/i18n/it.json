@@ -6,9 +6,21 @@
   "LAST_NAME_PLACEHOLDER": "Inserisci il tuo cognome",
   "EMAIL": "Email",
   "EMAIL_PLACEHOLDER": "Inserisci la tua email",
+  "PASSWORD": "Password",
+  "PASSWORD_PLACEHOLDER": "Scegli una password",
+  "REPEAT_PASSWORD": "Ripeti password",
+  "REPEAT_PASSWORD_PLACEHOLDER": "Ripeti password",
+  "WEAK_PASSWORD": "La password deve avere almeno 8 caratteri, contenere una lettera maiuscola, una minuscola, una cifra, un carattere speciale e nessuno spazio.",
+  "DIFFERENT_PASSWORD": "Le password non coincidono",
   "NOTIFY_BY_EMAIL": "Notifica tramite email",
   "SUBMIT": "Conferma",
   "REQUIRED_FIELD": "Il campo è obbligatorio!",
   "MINLENGHT_3_FIELD": "Questo campo deve avere almeno 3 caratteri!",
-  "EMAIL_FIELD": "Inserire email valida!"
+  "EMAIL_FIELD": "Inserire email valida!",
+  "PLACEHOLDER": "Seleziona...",
+  "THEME": "Tema",
+  "MODE": "Modalità",
+  "LANGUAGE": "Lingua",
+  "ITALIAN": "Italiano",
+  "ENGLISH": "Inglese"
 }
